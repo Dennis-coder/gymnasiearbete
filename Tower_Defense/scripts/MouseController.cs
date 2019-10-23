@@ -19,10 +19,10 @@ public class MouseController : Node2D
     
     }
 
-    // public override void _Input(InputEvent @event) {
-    //     InputEventMouseButton e = @event as InputEventMouseButton;
-    //     if (e != null) {
-    //         GD.Print("ye");
-    //     }
-    // }
+    public override void _Input(InputEvent @event) {
+    	InputEventMouseButton e = @event as InputEventMouseButton;
+    	if (e != null) {
+    		GD.Print("ye");
+    	}
+    }
 }   
