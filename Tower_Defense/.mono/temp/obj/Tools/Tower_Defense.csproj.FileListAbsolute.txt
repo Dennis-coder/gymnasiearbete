@@ -3,3 +3,8 @@ C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\bi
 C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
 C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
 C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
+C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.dll
+C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.pdb
+C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
+C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
+C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
