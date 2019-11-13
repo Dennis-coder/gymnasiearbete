@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tile_set_test.png-5bbef2c1cff26cd04016fea3f2eab658.stex"
+path="res://.import/CrossHair.png-39c8eaa9888047e3d76487091935b162.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles/tile_set_test.png"
-dest_files=[ "res://.import/tile_set_test.png-5bbef2c1cff26cd04016fea3f2eab658.stex" ]
+source_file="res://Sprites/CrossHair.png"
+dest_files=[ "res://.import/CrossHair.png-39c8eaa9888047e3d76487091935b162.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

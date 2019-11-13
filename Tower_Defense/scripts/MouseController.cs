@@ -11,8 +11,11 @@ public class MouseController : Node2D
     Node2D cellHighlight;
     public TileMap worldGrid;
     PackedScene towerScene;
+    
 
     Vector2 gridPos;
+    Vector2 gridWorldPos;
+    Vector2 mousePos;
 
     public override void _Ready()
     {
@@ -25,20 +28,45 @@ public class MouseController : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        gridPos = worldGrid.MapToWorld(worldGrid.WorldToMap(GetViewport().GetMousePosition()));
+        gridPos = worldGrid.WorldToMap(mousePos);
+        gridWorldPos = worldGrid.MapToWorld(gridPos);
 
-        cellHighlight.SetPosition(gridPos);
+        cellHighlight.SetPosition(gridWorldPos);
     }
 
     public override void _Input(InputEvent @event) {
     	InputEventMouseButton e = @event as InputEventMouseButton;
     	if (e != null) {
             if (e.IsActionPressed("mouse_left")) {
-
-                var tower = towerScene.Instance() as Node2D;
-                tower.SetPosition(gridPos);
-                AddChild(tower);
+                placeTower();
             }
     	}
+        InputEventMouseMotion eM = @event as InputEventMouseMotion;
+
+        if (eM != null) {
+            mousePos = eM.Position;
+        }
+
+    }
+
+    void placeTower() {
+        int cellType = worldGrid.GetCellv(gridPos);
+                
+        //checka om pengar finns
+
+
+        //checka om torn
+
+
+        //checka marktyp
+        if (cellType < 2) {
+    
+
+            
+            var tower = towerScene.Instance() as Node2D;
+
+            tower.SetPosition(gridWorldPos);
+            AddChild(tower);
+        }
     }
 }   
