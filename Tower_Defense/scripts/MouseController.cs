@@ -50,8 +50,9 @@ public class MouseController : Node2D
     }
 
     void placeTower() {
+
         int cellType = worldGrid.GetCellv(gridPos);
-                
+        GD.Print(cellType);
         //checka om pengar finns
 
 
@@ -60,11 +61,12 @@ public class MouseController : Node2D
 
         //checka marktyp
         if (cellType < 2) {
-    
+            GD.Print("Place");
 
             
-            var tower = towerScene.Instance() as Node2D;
-
+            Node2D tower = towerScene.Instance() as Node2D;
+            GD.Print(tower);
+            GD.Print(gridWorldPos);
             tower.SetPosition(gridWorldPos);
             AddChild(tower);
         }

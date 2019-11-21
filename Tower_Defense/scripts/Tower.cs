@@ -1,22 +1,22 @@
 using Godot;
 using System;
 
-public class Tower : Node
+public class Tower : Node2D
 {
 
     [Export]
-    float damage;
+    float damage = 1;
     [Export]
-    float hp;
+    float hp = 10;
     [Export]
-    float rateOfFire;
+    float rateOfFire = 95;
     [Export]
     PackedScene projectileType;
     [Export]
-    float range;
+    float range = 128;
     [Export]
     CircleShape2D towerRange;
-    float level;
+    float level = 1;
 
 
     public override void _Ready()
