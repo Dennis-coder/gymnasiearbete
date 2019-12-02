@@ -34,7 +34,7 @@ public class MouseController : Node2D
         cellHighlight.SetPosition(gridWorldPos);
     }
 
-    public override void _Input(InputEvent @event) {
+    public override void _UnhandledInput(InputEvent @event) {
     	InputEventMouseButton e = @event as InputEventMouseButton;
     	if (e != null) {
             if (e.IsActionPressed("mouse_left")) {

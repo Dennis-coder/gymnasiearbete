@@ -1,10 +1,16 @@
-C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.dll
-C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.pdb
-C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
-C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
-C:\Users\lukas.kuhlin\Documents\Godot\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
-C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.dll
-C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.pdb
-C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
-C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
-C:\Users\luc.sommerland\Documents\Godot projects\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
+C:/Users/lukas.kuhlin/Documents/Godot/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.dll
+C:/Users/lukas.kuhlin/Documents/Godot/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.pdb
+C:/Users/lukas.kuhlin/Documents/Godot/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csprojResolveAssemblyReference.cache
+C:/Users/lukas.kuhlin/Documents/Godot/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.dll
+C:/Users/lukas.kuhlin/Documents/Godot/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.pdb
+C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.dll
+C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.pdb
+C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csprojResolveAssemblyReference.cache
+C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.dll
+C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.pdb
+/Users/lukaskuhlin/Documents/GitHub/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.dll
+/Users/lukaskuhlin/Documents/GitHub/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.pdb
+/Users/lukaskuhlin/Documents/GitHub/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csprojAssemblyReference.cache
+/Users/lukaskuhlin/Documents/GitHub/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csproj.CoreCompileInputs.cache
+/Users/lukaskuhlin/Documents/GitHub/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.dll
+/Users/lukaskuhlin/Documents/GitHub/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.pdb
