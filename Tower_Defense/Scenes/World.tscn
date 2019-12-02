@@ -1,18 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/GameController.cs" type="Script" id=1]
 [ext_resource path="res://tiles/tile_set_test.png" type="Texture" id=2]
 [ext_resource path="res://scripts/MouseController.cs" type="Script" id=3]
 [ext_resource path="res://Sprites/CrossHair.png" type="Texture" id=4]
-<<<<<<< HEAD
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-=======
-[ext_resource path="res://Scenes/Enemies/Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Towers/Tower.tscn" type="PackedScene" id=6]
->>>>>>> Tower-enemy-detection
 
 [sub_resource type="NavigationPolygon" id=2]
 vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
@@ -98,15 +93,3 @@ position = Vector2( 300, 300 )
 
 [node name="Spawn" type="Node2D" parent="."]
 position = Vector2( 600, 48 )
-
-[node name="Tower" parent="." instance=ExtResource( 6 )]
-position = Vector2( 457.76, 52.0128 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 564.699, 93.6485 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 559.835, 3.94865 )
-
-[node name="Enemy4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 396.647, 29.8859 )

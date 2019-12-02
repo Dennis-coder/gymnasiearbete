@@ -32,7 +32,7 @@ public class Tower : Node2D
     public override void _Process(float delta) {
         // Shoot da first enemy in list (temporary)
         if (enemiesInRange.Count > 0) {
-            GD.Print(enemiesInRange[0].GetName());
+            //GD.Print(enemiesInRange[0].GetName());
 
 
         }
@@ -54,4 +54,5 @@ public class Tower : Node2D
             GD.Print(enemiesInRange.Count);
         }
     }
+
 }
