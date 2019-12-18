@@ -73,5 +73,6 @@ public class Enemy : Node2D
 
     void Arrived() {
         GD.Print("ARRIVED");
+        QueueFree();
     }
 }

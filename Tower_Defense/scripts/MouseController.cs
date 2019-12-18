@@ -8,7 +8,7 @@ public class MouseController : Node2D
     // private string b = "text";
 
     // Called when the node enters the scene tree for the first time.
-    Node2D cellHighlight;
+    CellHighlight cellHighlight;
     public TileMap worldGrid;
     PackedScene towerScene;
     
@@ -19,7 +19,7 @@ public class MouseController : Node2D
 
     public override void _Ready()
     {
-        cellHighlight = GetNode<Node2D>("Cell Highlight");
+        cellHighlight = GetNode<CellHighlight>("Cell Highlight");
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;
         towerScene = (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Tower.tscn");
@@ -38,7 +38,12 @@ public class MouseController : Node2D
     	InputEventMouseButton e = @event as InputEventMouseButton;
     	if (e != null) {
             if (e.IsActionPressed("mouse_left")) {
-                placeTower();
+                if (cellHighlight.IsCellVacant()) {
+                    placeTower();
+                } else {
+                    //SELECT TOWER
+                    cellHighlight.GetCurTower().QueueFree();
+                }
             }
     	}
         InputEventMouseMotion eM = @event as InputEventMouseMotion;
@@ -55,8 +60,6 @@ public class MouseController : Node2D
         GD.Print(cellType);
         //checka om pengar finns
 
-
-        //checka om torn
 
 
         //checka marktyp

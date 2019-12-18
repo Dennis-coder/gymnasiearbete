@@ -21,7 +21,7 @@ public class Tower : Node2D
     Vector2 shootDir;
     
     float level = 1;
-    IList<Node2D> enemiesInRange = new List<Node2D>();
+    IList<Enemy> enemiesInRange = new List<Enemy>();
 
     public override void _Ready()
     {
@@ -30,18 +30,26 @@ public class Tower : Node2D
     }
 
     public override void _Process(float delta) {
-        // Shoot da first enemy in list (temporary)
         if (enemiesInRange.Count > 0) {
-            //GD.Print(enemiesInRange[0].GetName());
+            float lowest = enemiesInRange[0].FastDistanceToGoal();
+            int t = 0;
 
+            for (int i = 1; i < enemiesInRange.Count; i++) {
+                float dist = enemiesInRange[i].FastDistanceToGoal();
 
+                if (dist < lowest) {
+                    lowest = dist;
+                    t = i;
+                }
+            }
+
+            Shoot(enemiesInRange[t].GetPosition());
         }
-        // When builds are merged check which enemy has the smallest distance to goal thru variablel (final)
     }
 
     private void _on_Detection_Enemy_area_entered(Area2D area) {
         if(area.GetName() == "EnemyHitbox") {
-            enemiesInRange.Add(area.GetParent() as Node2D);
+            enemiesInRange.Add(area.GetParent() as Enemy);
 
             GD.Print(enemiesInRange.Count);
         }
@@ -55,4 +63,13 @@ public class Tower : Node2D
         }
     }
 
+    void Shoot(Vector2 targetPos) {
+        Projectile projectile = projectileType.Instance() as Projectile;
+        Vector2 rootPos = GetPosition();
+        rootPos.x += 12;
+        rootPos.y += 12;
+        projectile.SetPosition(rootPos);
+        projectile.dir = rootPos.DirectionTo(targetPos + new Vector2(12, 12));
+        GetTree().GetRoot().GetNode("World").AddChild(projectile);
+    }
 }
