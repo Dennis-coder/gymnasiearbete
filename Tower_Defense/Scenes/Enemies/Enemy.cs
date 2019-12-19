@@ -5,6 +5,7 @@ public class Enemy : Node2D
 {
     [Export]
     float speed = 10;
+    float hp = 100;
     GameController gameController;
     Vector2[] path = new Vector2[0];
     Vector2 startPos;
@@ -74,5 +75,12 @@ public class Enemy : Node2D
     void Arrived() {
         GD.Print("ARRIVED");
         QueueFree();
+    }
+
+    public void RegisterHit(float dmg) {
+        hp -= dmg;
+
+        if (hp <= 0)
+            QueueFree();
     }
 }
