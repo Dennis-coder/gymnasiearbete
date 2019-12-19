@@ -38,7 +38,7 @@ public class Projectile : Sprite
             return;
         
         GD.Print("kachow");
-        enemy.RegisterHit(1);
+        enemy.RegisterHit(10);
 
         QueueFree();
     }

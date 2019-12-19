@@ -19,3 +19,8 @@ C:\Users\lukas.kuhlin\Documents\GitHub\gymnasiearbete\Tower_Defense\.mono\temp\b
 C:\Users\lukas.kuhlin\Documents\GitHub\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
 C:\Users\lukas.kuhlin\Documents\GitHub\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
 C:\Users\lukas.kuhlin\Documents\GitHub\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
+D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.dll
+D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.pdb
+D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
+D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
+D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
