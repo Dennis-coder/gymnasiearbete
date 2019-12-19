@@ -10,7 +10,7 @@ public class Tower : Node2D
     [Export]
     float hp = 10;
     [Export]
-    float rateOfFire = 95;
+    float rateOfFire;
     [Export]
     PackedScene projectileType;
     [Export]
@@ -23,10 +23,14 @@ public class Tower : Node2D
     float level = 1;
     IList<Enemy> enemiesInRange = new List<Enemy>();
 
+    float shootTimer;
+
     public override void _Ready()
     {
         towerRange = (FindNode("Range") as CollisionShape2D).GetShape() as CircleShape2D;
         towerRange.Radius = range;
+
+        shootTimer = rateOfFire;
     }
 
     public override void _Process(float delta) {
@@ -43,7 +47,12 @@ public class Tower : Node2D
                 }
             }
 
-            Shoot(enemiesInRange[t].GetPosition());
+            if (shootTimer <= 0) {
+                shootTimer = rateOfFire;
+                Shoot(enemiesInRange[t].GetPosition());
+            } else {
+                shootTimer -= delta;
+            }
         }
     }
 
