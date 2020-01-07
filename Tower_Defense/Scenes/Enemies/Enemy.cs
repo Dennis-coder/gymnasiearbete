@@ -6,6 +6,7 @@ public class Enemy : Node2D
     [Export]
     float speed = 10;
     float hp = 100;
+    float value = 20;
     GameController gameController;
     Vector2[] path = new Vector2[0];
     Vector2 startPos;
@@ -80,7 +81,9 @@ public class Enemy : Node2D
     public void RegisterHit(float dmg) {
         hp -= dmg;
 
-        if (hp <= 0)
+        if (hp <= 0) {
+            gameController.EarnMoney(value);
             QueueFree();
+        }
     }
 }

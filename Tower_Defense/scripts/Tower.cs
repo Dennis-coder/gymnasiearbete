@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Tower : Node2D
 {
-
+    public string type = "Tower";
     [Export]
     float damage = 1;
     [Export]
@@ -60,7 +60,7 @@ public class Tower : Node2D
         if(area.GetName() == "EnemyHitbox") {
             enemiesInRange.Add(area.GetParent() as Enemy);
 
-            GD.Print(enemiesInRange.Count);
+            // GD.Print(enemiesInRange.Count);
         }
     }
 
@@ -68,7 +68,7 @@ public class Tower : Node2D
         if(area.GetName() == "EnemyHitbox") {
             enemiesInRange.Remove(area.GetParent() as Enemy);
 
-            GD.Print(enemiesInRange.Count);
+            // GD.Print(enemiesInRange.Count);
         }
     }
 

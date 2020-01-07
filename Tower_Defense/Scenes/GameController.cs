@@ -12,15 +12,28 @@ public class GameController : Node2D
     Line2D debugLine;
     Line2D debugLineSnapped;
 
-    PackedScene enemyScene;
+    float balance;
+
+    //TOWERS
+    float resellFactor = 0.6f;
+    Dictionary<string, PackedScene> towerScenes = new Dictionary<string, PackedScene>();
+    Dictionary<string, float> towerCosts = new Dictionary<string, float>();
+
+
+    //ENEMIES
+    Dictionary<string, PackedScene> enemyScenes = new Dictionary<string, PackedScene>();
 
     public override void _Ready()
     {
         //ASSIGN WORLD GRID
         worldGrid = FindNode("WorldGrid") as TileMap;
 
+        //LOAD TOWER SCENE
+        towerScenes.Add("Tower", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Tower.tscn"));
+        towerCosts.Add("Tower", 40);
+
         //LOAD ENEMY SCENE
-        enemyScene = (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Enemy.tscn");
+        enemyScenes.Add("Enemy", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Enemy.tscn"));
 
 
         //PATH FINDING
@@ -38,6 +51,7 @@ public class GameController : Node2D
         GD.Print(path.Length);
         debugLineSnapped.Points = path;
 
+        EarnMoney(100);
     }
 
     public Vector2[] RequestPath() {
@@ -45,10 +59,12 @@ public class GameController : Node2D
         //yeet 
     }
 
-    void SpawnEnemy() {
-        Node2D enemy = enemyScene.Instance() as Node2D;
+    void SpawnEnemy(string enemyType) {
+        PackedScene scene = enemyScenes[enemyType];
+
+        Node2D enemy = scene.Instance() as Node2D;
         enemy.SetPosition(spawn.GetGlobalPosition());
-        GetTree().GetRoot().GetNode("World").AddChild(enemy);
+        AddChild(enemy);
     }
 
 
@@ -56,13 +72,15 @@ public class GameController : Node2D
     public override void _Process(float delta) {
 
         if (Input.IsActionJustPressed("ui_select")) {
-            SpawnEnemy();
+            SpawnEnemy("Enemy");
         }
 
     }
 
+    //-------------------------PRIVATE FUNCTIONS------------------------------------------------
 
 
+    //PATH-----------------------------------------------
     Vector2[] PathSnapToGrid(Vector2[] sPath) {
         List<Vector2> newPath = new List<Vector2>();
         for (int i = 0; i < sPath.Length; i++) {
@@ -129,5 +147,66 @@ public class GameController : Node2D
         output.Add(input[input.Count-1]);
 
         return output;
+    }
+
+
+
+    //-------------------------------------------------PUBLIC FUNCTIONS--------------------------------------------------------
+
+
+    //TOWER------------------------------------------------------------
+    public void PlaceTower(string towerType, Vector2 gridPos) {
+        PackedScene scene = towerScenes[towerType];
+        float cost = towerCosts[towerType];
+        //checka marktyp
+        int cellType = worldGrid.GetCellv(gridPos);
+        
+        if (cellType > 2) { 
+            return;
+        }
+
+        
+        //checka para
+        if (!SpendMoney(cost)) {
+            return;
+        }
+        
+        
+
+        Vector2 gridWorldPos = worldGrid.MapToWorld(gridPos);
+        
+        Node2D tower = scene.Instance() as Node2D;
+        tower.SetPosition(gridWorldPos);
+        AddChild(tower);
+    }
+
+    public void SellTower(Tower tower) {
+        float value = towerCosts[tower.type] * resellFactor;
+        EarnMoney(value);
+
+        tower.QueueFree();
+    }
+
+
+    //BALANCE------------------------------------------------------------
+    public bool SpendMoney(float amount) {
+        if (balance >= amount) {
+            balance -= amount;
+
+            //EV UPPDATERA UI
+            GD.Print("Success. New balance: ", balance);
+
+            return true;
+        }
+
+        GD.Print("Not enough para");
+        return false;
+    }
+
+    public void EarnMoney(float amount) {
+        balance += amount;
+
+        //EV UPPDATERA UI
+        GD.Print("New balance: ", balance);
     }
 }

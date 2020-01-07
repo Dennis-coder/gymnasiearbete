@@ -8,10 +8,11 @@ public class MouseController : Node2D
     // private string b = "text";
 
     // Called when the node enters the scene tree for the first time.
+    GameController gameController;
     CellHighlight cellHighlight;
     public TileMap worldGrid;
-    PackedScene towerScene;
     
+    string curTower = "Tower";
 
     Vector2 gridPos;
     Vector2 gridWorldPos;
@@ -19,10 +20,11 @@ public class MouseController : Node2D
 
     public override void _Ready()
     {
+        gc = GetParent() as GameController;
         cellHighlight = GetNode<CellHighlight>("Cell Highlight");
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;
-        towerScene = (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Tower.tscn");
+        
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,10 +41,11 @@ public class MouseController : Node2D
     	if (e != null) {
             if (e.IsActionPressed("mouse_left")) {
                 if (cellHighlight.IsCellVacant()) {
-                    placeTower();
+                    gameController.PlaceTower(curTower, gridPos);
                 } else {
                     //SELECT TOWER
-                    cellHighlight.GetCurTower().QueueFree();
+                    gameController.SellTower(cellHighlight.GetCurTower());
+                    
                 }
             }
     	}
@@ -54,24 +57,5 @@ public class MouseController : Node2D
 
     }
 
-    void placeTower() {
-
-        int cellType = worldGrid.GetCellv(gridPos);
-        GD.Print(cellType);
-        //checka om pengar finns
-
-
-
-        //checka marktyp
-        if (cellType < 2) {
-            GD.Print("Place");
-
-            
-            Node2D tower = towerScene.Instance() as Node2D;
-            GD.Print(tower);
-            GD.Print(gridWorldPos);
-            tower.SetPosition(gridWorldPos);
-            AddChild(tower);
-        }
-    }
+    
 }   
