@@ -10,6 +10,7 @@ public class MouseController : Node2D
     // Called when the node enters the scene tree for the first time.
     GameController gameController;
     CellHighlight cellHighlight;
+	public Camera2D camera2D; 
     public TileMap worldGrid;
     
     string curTower = "Tower";
@@ -20,8 +21,10 @@ public class MouseController : Node2D
 
     public override void _Ready()
     {
-        gc = GetParent() as GameController;
+        gameController = GetParent() as GameController;
         cellHighlight = GetNode<CellHighlight>("Cell Highlight");
+		camera2D = GetTree().GetRoot().GetNode("World").FindNode("Camera2D") as Camera2D;
+        GD.Print("Cam:" + camera2D.GetOffset().x);
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;
         
@@ -52,7 +55,7 @@ public class MouseController : Node2D
         InputEventMouseMotion eM = @event as InputEventMouseMotion;
 
         if (eM != null) {
-            mousePos = eM.Position;
+            mousePos = eM.GlobalPosition - new Vector2(camera2D.GetOffset().x, 0);
         }
 
     }
