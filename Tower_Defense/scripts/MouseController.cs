@@ -35,6 +35,7 @@ public class MouseController : Node2D
     {
         gridPos.x = Mathf.Clamp(worldGrid.WorldToMap(mousePos).x, 0, gridSize.x);
         gridPos.y = Mathf.Clamp(worldGrid.WorldToMap(mousePos).y, 0, gridSize.y);
+        
         gridWorldPos = worldGrid.MapToWorld(gridPos);
 
         cellHighlight.SetPosition(gridWorldPos);

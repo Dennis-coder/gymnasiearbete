@@ -23,6 +23,10 @@ public class GameController : Node2D
     //ENEMIES
     Dictionary<string, PackedScene> enemyScenes = new Dictionary<string, PackedScene>();
 
+    // GUI
+    public Label money;
+    public Label health;
+
     public override void _Ready()
     {
         //ASSIGN WORLD GRID
@@ -51,6 +55,9 @@ public class GameController : Node2D
         GD.Print(path.Length);
         debugLineSnapped.Points = path;
 
+        money = GetTree().GetRoot().GetNode("World").FindNode("Money") as Label;
+        GD.Print(money.GetName());
+
         EarnMoney(100);
     }
 
@@ -74,7 +81,6 @@ public class GameController : Node2D
         if (Input.IsActionJustPressed("ui_select")) {
             SpawnEnemy("Enemy");
         }
-
     }
 
     //-------------------------PRIVATE FUNCTIONS------------------------------------------------
@@ -170,8 +176,6 @@ public class GameController : Node2D
         if (!SpendMoney(cost)) {
             return;
         }
-        
-        
 
         Vector2 gridWorldPos = worldGrid.MapToWorld(gridPos);
         
@@ -193,7 +197,7 @@ public class GameController : Node2D
         if (balance >= amount) {
             balance -= amount;
 
-            //EV UPPDATERA UI
+            UpdateUIMoney();
             GD.Print("Success. New balance: ", balance);
 
             return true;
@@ -206,7 +210,11 @@ public class GameController : Node2D
     public void EarnMoney(float amount) {
         balance += amount;
 
-        //EV UPPDATERA UI
+        UpdateUIMoney();
         GD.Print("New balance: ", balance);
+    }
+
+    public void UpdateUIMoney() {
+        money.SetText("$:" + balance);
     }
 }

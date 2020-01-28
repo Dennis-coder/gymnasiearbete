@@ -112,5 +112,21 @@ position = Vector2( 576, 48 )
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 256, 288 )
 current = true
+
+[node name="Stats" type="VBoxContainer" parent="."]
+margin_left = -244.0
+margin_top = 12.0
+margin_bottom = 108.0
+
+[node name="Money" type="Label" parent="Stats"]
+margin_right = 244.0
+margin_bottom = 14.0
+text = "$: "
+
+[node name="Health" type="Label" parent="Stats"]
+margin_top = 18.0
+margin_right = 244.0
+margin_bottom = 32.0
+text = "Hp:"
 [connection signal="area_entered" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_entered"]
 [connection signal="area_exited" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_exited"]
