@@ -4,6 +4,27 @@ using System.Collections.Generic;
 
 public class GameController : Node2D
 {
+
+    //WAVE CONTROLLER
+    public class SpawnAction {
+        public string EnemyType;
+        public float PauseTime;
+
+        public SpawnAction(string x, float y) {
+            this.EnemyType = x;
+            this.PauseTime = y;
+        }
+    }
+
+    Timer wavePauseTimer;
+    bool waveInAction;
+    int waveCount = 1;
+    float RemainingEnemies;
+    
+    List<SpawnAction> wave = new List<SpawnAction>();
+
+
+    //GRIDS
     TileMap worldGrid;
     Navigation2D nav2d;
     Node2D spawn;
@@ -25,6 +46,15 @@ public class GameController : Node2D
 
     public override void _Ready()
     {
+        wavePauseTimer = GetNode<Timer>("WavePauseTimer");
+        wave.Add(new SpawnAction("Enemy",5f));
+        wave.Add(new SpawnAction("Enemy",5f));
+        wave.Add(new SpawnAction("Enemy",5f));
+        wave.Add(new SpawnAction("Enemy",5f));
+        wave.Add(new SpawnAction("Enemy",5f));
+        wave.Add(new SpawnAction("Enemy",5f));
+        GD.Print(wave.Count);
+
         //ASSIGN WORLD GRID
         worldGrid = FindNode("WorldGrid") as TileMap;
 
@@ -72,7 +102,7 @@ public class GameController : Node2D
     public override void _Process(float delta) {
 
         if (Input.IsActionJustPressed("ui_select")) {
-            SpawnEnemy("Enemy");
+            StartWave();
         }
 
     }
@@ -149,10 +179,52 @@ public class GameController : Node2D
         return output;
     }
 
+    //WAVECONTROLLER-------------------------------------------------------
+    public void _on_WavePauseTimer_timeout() {
+        if (!waveInAction) {
+            return;
+        }
 
+        if (wave.Count <= 0) {
+            return;
+        }
+    
+        SpawnEnemy(wave[0].EnemyType);
+        wavePauseTimer.WaitTime = wave[0].PauseTime;
+        wave.RemoveAt(0);
+    }
+
+    void StartWave() {
+        if (waveInAction) {
+            return;
+        }
+
+        
+        waveInAction = true;
+        wavePauseTimer.SetAutostart(true);        
+        wavePauseTimer.WaitTime = 1f;
+        RemainingEnemies = wave.Count;
+
+        GD.Print("Wave #", waveCount, " started!");
+    }
+
+    void EndWave() {
+        GD.Print("Wave ended");
+        waveCount++;
+        waveInAction = false;
+    }
 
     //-------------------------------------------------PUBLIC FUNCTIONS--------------------------------------------------------
+    public void EnemyKilled() {
+        RemainingEnemies--;
 
+        if (RemainingEnemies <= 0) {
+            EndWave();
+        }
+
+        GD.Print("Remaining: ", RemainingEnemies);
+
+    }
 
     //TOWER------------------------------------------------------------
     public void PlaceTower(string towerType, Vector2 gridPos) {

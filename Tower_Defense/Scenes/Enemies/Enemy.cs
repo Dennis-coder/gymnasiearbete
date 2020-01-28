@@ -75,6 +75,7 @@ public class Enemy : Node2D
 
     void Arrived() {
         GD.Print("ARRIVED");
+        gameController.EnemyKilled();
         QueueFree();
     }
 
@@ -83,6 +84,7 @@ public class Enemy : Node2D
 
         if (hp <= 0) {
             gameController.EarnMoney(value);
+            gameController.EnemyKilled();
             QueueFree();
         }
     }
