@@ -18,6 +18,7 @@ public class MouseController : Node2D
     Vector2 gridPos;
     Vector2 gridWorldPos;
     Vector2 mousePos;
+    Vector2 gridSize = new Vector2(23, 23);
 
     public override void _Ready()
     {
@@ -27,13 +28,13 @@ public class MouseController : Node2D
         GD.Print("Cam:" + camera2D.GetOffset().x);
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;
-        
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        gridPos = worldGrid.WorldToMap(mousePos);
+        gridPos.x = Mathf.Clamp(worldGrid.WorldToMap(mousePos).x, 0, gridSize.x);
+        gridPos.y = Mathf.Clamp(worldGrid.WorldToMap(mousePos).y, 0, gridSize.y);
         gridWorldPos = worldGrid.MapToWorld(gridPos);
 
         cellHighlight.SetPosition(gridWorldPos);
