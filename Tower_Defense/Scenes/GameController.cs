@@ -13,6 +13,7 @@ public class GameController : Node2D
     Line2D debugLineSnapped;
 
     float balance;
+    float healthPoints;
 
     //TOWERS
     float resellFactor = 0.6f;
@@ -58,7 +59,11 @@ public class GameController : Node2D
         money = GetTree().GetRoot().GetNode("World").FindNode("Money") as Label;
         GD.Print(money.GetName());
 
+        health = GetTree().GetRoot().GetNode("World").FindNode("Health") as Label;
+        GD.Print(health.GetName());
+
         EarnMoney(100);
+        UpdateHealth(1500);
     }
 
     public Vector2[] RequestPath() {
@@ -215,6 +220,11 @@ public class GameController : Node2D
     }
 
     public void UpdateUIMoney() {
-        money.SetText("$:" + balance);
+        money.SetText("$: " + balance);
+    }
+
+    public void UpdateHealth(float amount) {
+        healthPoints += amount;
+        health.SetText("Hp: " + healthPoints);
     }
 }

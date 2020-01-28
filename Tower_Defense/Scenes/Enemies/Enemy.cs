@@ -74,6 +74,7 @@ public class Enemy : Node2D
     }
 
     void Arrived() {
+        gameController.UpdateHealth(-hp);
         GD.Print("ARRIVED");
         QueueFree();
     }
