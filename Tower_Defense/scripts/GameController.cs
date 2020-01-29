@@ -4,6 +4,19 @@ using System.Collections.Generic;
 
 public class GameController : Node2D
 {
+    //SCENES
+    [Export]
+    PackedScene gameOverScene;
+
+
+    //HEALTH
+    [Export]
+    float startingHealth = 100;
+    float health;
+    Camera2D ye;
+    
+
+    //GRID AND PATHFINDING
     TileMap worldGrid;
     Navigation2D nav2d;
     Node2D spawn;
@@ -12,6 +25,7 @@ public class GameController : Node2D
     Line2D debugLine;
     Line2D debugLineSnapped;
 
+    //MONEY
     float balance;
 
     //TOWERS
@@ -25,6 +39,10 @@ public class GameController : Node2D
 
     public override void _Ready()
     {
+        
+        //START HEALTH
+        health = startingHealth;
+
         //ASSIGN WORLD GRID
         worldGrid = FindNode("WorldGrid") as TileMap;
 
@@ -149,9 +167,25 @@ public class GameController : Node2D
         return output;
     }
 
-
+    //GAME OVER
+    void GameOver() {
+        GD.Print("GAME OVER");
+        // GetTree().ChangeScene("res://Scenes/Game States/GameOverState.tscn");
+        GetTree().ChangeSceneTo(gameOverScene);
+    }
 
     //-------------------------------------------------PUBLIC FUNCTIONS--------------------------------------------------------
+    //DAMAGE OSV---------------------------------------------------------
+    public void TakeDamage(float amount) {
+        health -= amount;
+        
+        GD.Print("Damage Taken: ", amount, ". Remaining Health: ", health);
+        
+        if (health <= 0)
+        {
+            GameOver();
+        }
+    }
 
 
     //TOWER------------------------------------------------------------

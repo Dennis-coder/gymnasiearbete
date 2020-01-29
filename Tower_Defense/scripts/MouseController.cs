@@ -20,7 +20,7 @@ public class MouseController : Node2D
 
     public override void _Ready()
     {
-        gc = GetParent() as GameController;
+        gameController = GetParent() as GameController;
         cellHighlight = GetNode<CellHighlight>("Cell Highlight");
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;

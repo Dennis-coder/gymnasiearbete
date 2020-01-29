@@ -5,6 +5,7 @@ public class Enemy : Node2D
 {
     [Export]
     float speed = 10;
+    [Export]
     float hp = 100;
     float value = 20;
     GameController gameController;
@@ -75,6 +76,9 @@ public class Enemy : Node2D
 
     void Arrived() {
         GD.Print("ARRIVED");
+
+        gameController.TakeDamage(hp);
+
         QueueFree();
     }
 

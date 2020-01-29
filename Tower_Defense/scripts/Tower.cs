@@ -67,7 +67,6 @@ public class Tower : Node2D
     private void _on_Detection_Enemy_area_exited(Area2D area) {
         if(area.GetName() == "EnemyHitbox") {
             enemiesInRange.Remove(area.GetParent() as Enemy);
-
             // GD.Print(enemiesInRange.Count);
         }
     }
