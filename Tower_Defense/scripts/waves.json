@@ -1,0 +1,26 @@
+[
+    {
+        "EnemyType": "Enemy",
+        "PauseTime": 5
+    },
+    {
+        "EnemyType": "Enemy",
+        "PauseTime": 5
+    },
+    {
+        "EnemyType": "Enemy",
+        "PauseTime": 5
+    },
+    {
+        "EnemyType": "Enemy",
+        "PauseTime": 5
+    },
+    {
+        "EnemyType": "Enemy",
+        "PauseTime": 5
+    },
+    {
+        "EnemyType": "Enemy",
+        "PauseTime": 5
+    }
+]

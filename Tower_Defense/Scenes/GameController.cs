@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class GameController : Node2D
 {
@@ -16,6 +17,7 @@ public class GameController : Node2D
         }
     }
 
+    string jsonFilePath = "res://scripts/waves.json";
     Timer wavePauseTimer;
     bool waveInAction;
     int waveCount = 1;
@@ -44,8 +46,18 @@ public class GameController : Node2D
     //ENEMIES
     Dictionary<string, PackedScene> enemyScenes = new Dictionary<string, PackedScene>();
 
+<<<<<<< Updated upstream
+=======
+    string waveFilePath = "";
+
+    // GUI
+    public Label money;
+    public Label health;
+
+>>>>>>> Stashed changes
     public override void _Ready()
     {
+        loadWave();
         wavePauseTimer = GetNode<Timer>("WavePauseTimer");
         wave.Add(new SpawnAction("Enemy",5f));
         wave.Add(new SpawnAction("Enemy",5f));
@@ -212,6 +224,24 @@ public class GameController : Node2D
         GD.Print("Wave ended");
         waveCount++;
         waveInAction = false;
+    }
+
+    List<SpawnAction> loadWave() {
+        //Godot.Collections.Dictionary
+        //Godot.Collections.Array
+        File jsonFile = new File();
+        jsonFile.Open(jsonFilePath, 1);
+        var parse = JSON.Parse(jsonFile.GetAsText());
+        jsonFile.Close();
+
+        Godot.Collections.Array result = parse.Result as Godot.Collections.Array;
+        // GD.Print(result.);
+        GD.Print(result[0]);
+
+
+
+
+        return new List<SpawnAction>();
     }
 
     //-------------------------------------------------PUBLIC FUNCTIONS--------------------------------------------------------
