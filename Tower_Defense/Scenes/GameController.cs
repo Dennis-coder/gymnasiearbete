@@ -47,7 +47,10 @@ public class GameController : Node2D
     Dictionary<string, PackedScene> enemyScenes = new Dictionary<string, PackedScene>();
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
     string waveFilePath = "";
 
     // GUI
