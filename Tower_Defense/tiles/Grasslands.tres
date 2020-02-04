@@ -3,28 +3,28 @@
 [ext_resource path="res://tiles/Grasslands.png" type="Texture" id=1]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
+vertices = PoolVector2Array( 0, 4, 24, 4, 24, 20, 0, 20 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
+vertices = PoolVector2Array( 4, 0, 20, 0, 20, 24, 4, 24 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+[sub_resource type="NavigationPolygon" id=7]
+vertices = PoolVector2Array( 20, 24, 20, 20, 24, 20, 24, 4, 4, 4, 4, 24 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
 
-[sub_resource type="NavigationPolygon" id=4]
-vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+[sub_resource type="NavigationPolygon" id=8]
+vertices = PoolVector2Array( 4, 24, 20, 24, 20, 4, 0, 4, 0, 20, 4, 20 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
 
-[sub_resource type="NavigationPolygon" id=5]
-vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+[sub_resource type="NavigationPolygon" id=9]
+vertices = PoolVector2Array( 4, 0, 4, 20, 20, 20, 24, 20, 24, 4, 20, 4, 20, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6 ) ]
 
-[sub_resource type="NavigationPolygon" id=6]
-vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+[sub_resource type="NavigationPolygon" id=10]
+vertices = PoolVector2Array( 4, 0, 4, 4, 0, 4, 0, 20, 20, 20, 20, 0 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5 ) ]
 
 [resource]
 0/name = "Grasslands.png 0"
@@ -67,7 +67,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/navigation = SubResource( 3 )
+3/navigation = SubResource( 7 )
 3/shapes = [  ]
 3/z_index = 0
 4/name = "Grasslands.png 4"
@@ -78,7 +78,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 4/tile_mode = 0
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
-4/navigation = SubResource( 4 )
+4/navigation = SubResource( 8 )
 4/shapes = [  ]
 4/z_index = 0
 5/name = "Grasslands.png 5"
@@ -89,7 +89,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
-5/navigation = SubResource( 5 )
+5/navigation = SubResource( 9 )
 5/shapes = [  ]
 5/z_index = 0
 6/name = "Grasslands.png 6"
@@ -100,6 +100,6 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 6/tile_mode = 0
 6/occluder_offset = Vector2( 0, 0 )
 6/navigation_offset = Vector2( 0, 0 )
-6/navigation = SubResource( 6 )
+6/navigation = SubResource( 10 )
 6/shapes = [  ]
 6/z_index = 0
