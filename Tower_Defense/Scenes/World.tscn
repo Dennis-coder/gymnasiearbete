@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/GameController.cs" type="Script" id=1]
 [ext_resource path="res://tiles/tile_set_test.png" type="Texture" id=2]
 [ext_resource path="res://scripts/MouseController.cs" type="Script" id=3]
 [ext_resource path="res://Sprites/CrossHair.png" type="Texture" id=4]
 [ext_resource path="res://scripts/CellHighlight.cs" type="Script" id=5]
+[ext_resource path="res://Sprites/Tower.png" type="Texture" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 24, 0, 24, 24, 0, 24 )
@@ -133,6 +134,25 @@ margin_top = 18.0
 margin_right = 244.0
 margin_bottom = 32.0
 text = "Hp:"
+
+[node name="TowerSelect" type="VBoxContainer" parent="."]
+visible = false
+margin_left = 576.0
+margin_right = 772.0
+margin_bottom = 576.0
+
+[node name="Towers" type="GridContainer" parent="TowerSelect"]
+margin_right = 196.0
+margin_bottom = 320.0
+rect_min_size = Vector2( 196, 320 )
+columns = 4
+
+[node name="TowerSelect" type="TextureButton" parent="TowerSelect/Towers"]
+margin_right = 24.0
+margin_bottom = 24.0
+toggle_mode = true
+texture_normal = ExtResource( 6 )
+stretch_mode = 4
 [connection signal="area_entered" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_entered"]
 [connection signal="area_exited" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_exited"]
 [connection signal="timeout" from="WavePauseTimer" to="." method="_on_WavePauseTimer_timeout"]

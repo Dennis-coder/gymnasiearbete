@@ -52,12 +52,32 @@ public class GameController : Node2D
     public override void _Ready()
     {
         wavePauseTimer = GetNode<Timer>("WavePauseTimer");
-        wave.Add(new SpawnAction("Enemy",5f));
-        wave.Add(new SpawnAction("Enemy",5f));
-        wave.Add(new SpawnAction("Enemy",5f));
-        wave.Add(new SpawnAction("Enemy",5f));
-        wave.Add(new SpawnAction("Enemy",5f));
-        wave.Add(new SpawnAction("Enemy",5f));
+        wave.Add(new SpawnAction("Enemy",1f));
+        wave.Add(new SpawnAction("Enemy",1f));
+        wave.Add(new SpawnAction("Enemy",1f));
+        wave.Add(new SpawnAction("Enemy",1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",0.1f));
+        wave.Add(new SpawnAction("Enemy",10f));
+        wave.Add(new SpawnAction("EnemyBig",10f));
+
         GD.Print(wave.Count);
 
         //ASSIGN WORLD GRID
@@ -69,6 +89,7 @@ public class GameController : Node2D
 
         //LOAD ENEMY SCENE
         enemyScenes.Add("Enemy", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Enemy.tscn"));
+        enemyScenes.Add("EnemyBig", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/EnemyBig.tscn"));
 
 
         //PATH FINDING
