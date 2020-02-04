@@ -7,7 +7,7 @@
 [ext_resource path="res://scripts/CellHighlight.cs" type="Script" id=5]
 [ext_resource path="res://Sprites/Tower.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11, 11 )
 
 [node name="World" type="Node2D"]
@@ -33,6 +33,7 @@ default_color = Color( 0, 1, 0.0627451, 1 )
 texture_mode = 110
 
 [node name="MouseController" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 3 )
 
 [node name="Cell Highlight" type="Sprite" parent="MouseController"]
@@ -46,20 +47,20 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseController/Cell Highlight/DetectionArea"]
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 
 [node name="TowerGrid" type="TileMap" parent="."]
 cell_size = Vector2( 24, 24 )
 format = 1
 
 [node name="ParasitNiklas" type="Node2D" parent="."]
-position = Vector2( 300, 300 )
+position = Vector2( 48, 216 )
 
 [node name="Spawn" type="Node2D" parent="."]
-position = Vector2( 576, 48 )
+position = Vector2( 336, 48 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 192, 108 )
+position = Vector2( 192, 108 )
 current = true
 
 [node name="WavePauseTimer" type="Timer" parent="."]
@@ -68,9 +69,12 @@ wait_time = 5.0
 autostart = true
 
 [node name="Stats" type="VBoxContainer" parent="."]
-margin_left = -244.0
-margin_top = 12.0
-margin_bottom = 108.0
+anchor_right = 1.0
+margin_left = -0.665771
+margin_top = 0.273041
+margin_right = 243.334
+margin_bottom = 96.273
+mouse_filter = 2
 
 [node name="Money" type="Label" parent="Stats"]
 margin_right = 244.0

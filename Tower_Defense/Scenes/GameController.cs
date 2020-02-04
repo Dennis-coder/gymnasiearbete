@@ -187,6 +187,18 @@ public class GameController : Node2D
 
     //ta bort raksträckor
     List<Vector2> RemoveRedundantPoints(List<Vector2> input) {
+// E 0:00:01:0748   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+// Parameter name: index
+//   <C Source>     :0 @ void System.ThrowHelper.ThrowArgumentOutOfRange_IndexException()()
+//   <Stack Trace>  :0 @ void System.ThrowHelper.ThrowArgumentOutOfRange_IndexException()()
+//                  :0 @ Godot.Vector2 System.Collections.Generic.List`1[[Godot.Vector2, GodotSharp, Version=1.0.7272.28045, Culture=neutral, PublicKeyToken=null]].get_Item(Int32 )()
+//                  GameController.cs:192 @ System.Collections.Generic.List`1[Godot.Vector2] GameController.RemoveRedundantPoints(System.Collections.Generic.List`1[Godot.Vector2] )()
+//                  GameController.cs:183 @ Godot.Vector2[] GameController.PathSnapToGrid(Godot.Vector2[] )()
+//                  GameController.cs:106 @ void GameController._Ready()()
+
+
+
+
         List<Vector2> output = new List<Vector2>();
 
         output.Add(input[0]);
@@ -265,7 +277,7 @@ public class GameController : Node2D
         //checka marktyp
         int cellType = worldGrid.GetCellv(gridPos);
         
-        if (cellType > 2) { 
+        if (cellType > 0) { 
             return;
         }
 
