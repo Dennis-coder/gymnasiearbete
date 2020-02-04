@@ -145,39 +145,88 @@ public class GameController : Node2D
     //PATH-----------------------------------------------
     Vector2[] PathSnapToGrid(Vector2[] sPath) {
         List<Vector2> newPath = new List<Vector2>();
+
+        
         for (int i = 0; i < sPath.Length; i++) {
             Vector2 newPos = worldGrid.WorldToMap(sPath[i]);
-            Vector2 gridPos = newPos;
 
-            //FIXA FEL EV FEL vid svängarna
-            if (i < sPath.Length-1) {
-                Vector2 nextGridPos = worldGrid.WorldToMap(sPath[i+1]);
+            Vector2 pPos = sPath[i];
 
-                int xDif = (int)(nextGridPos.x-gridPos.x);
-                int yDif = (int)(nextGridPos.y-gridPos.y);
+        if (i < sPath.Length-1) {
+            float xDif = sPath[i+1].x - sPath[i].x;
+            float yDif = sPath[i+1].y - sPath[i].y;
+            GD.Print("i: ", i, "; realX: ", sPath[i].x, "; realY: ", sPath[i].y, "; realXDif: ", xDif, "; realYDif: ", yDif);
+
+            if (xDif != 0 && yDif != 0) {
 
 
-                if (xDif != 0 && yDif != 0) {
-                    if (xDif == -1 && yDif == 1) {
 
-                        i++;
-                        newPos = worldGrid.WorldToMap(sPath[i]);
-                        newPos.x -= 0;
-                        newPos.y -= 1;
-
-                    }
-                }
-                if (xDif == 0 && yDif == 0) {
-                    i++;
-                    newPos = worldGrid.WorldToMap(sPath[i]);
-                }
 
             }
 
-            newPos = worldGrid.MapToWorld(newPos);
-
-            newPath.Add(newPos);
         }
+
+            newPath.Add(pPos);
+        }
+
+        // for (int i = 0; i < sPath.Length; i++) {
+        //     Vector2 newPos = worldGrid.WorldToMap(sPath[i]);
+        //     Vector2 gridPos = newPos;
+
+        //     if (i < sPath.Length-1) {
+        //         float realXDif = sPath[i+1].x - sPath[i].x;
+        //         float realYDif = sPath[i+1].y - sPath[i].y;
+        //         GD.Print("i: ", i, "; realX: ", sPath[i].x, "; realY: ", sPath[i].y, "; realXDif: ", realXDif, "; realYDif: ", realYDif);
+        //     }
+        //     //DET FUCKAR NÄR DET KOMMER TVÅ SVÄNGAR PÅ RAKEN
+        //     //FIXA FEL EV FEL vid svängarna
+        //     if (i < sPath.Length-1) {
+        //         Vector2 nextGridPos = worldGrid.WorldToMap(sPath[i+1]);
+        //         bool bruh = false;
+        //         int xDif = (int)(nextGridPos.x-gridPos.x);
+        //         int yDif = (int)(nextGridPos.y-gridPos.y);
+        //         // GD.Print("i: ", i, "; x: ", gridPos.x, "; y: ", gridPos.y, "; xDif: ", xDif, "; yDif: ", yDif);
+
+        //         if (xDif != 0 && yDif != 0) {
+        //             //Fel vid sväng nedåt åt vänster
+        //             if (xDif == -1 && yDif == 1) {
+        //                 // GD.Print("NEDÅT VÄNSTER I++");
+        //                 bruh = true;
+        //                 i++;
+        //                 newPos = worldGrid.WorldToMap(sPath[i]);
+        //                 newPos.x -= 0;
+        //                 newPos.y -= 1;
+
+        //             } else if (xDif == 1 && yDif == -1) {
+        //                 //Fel vid sväng uppåt åt höger
+        //                 // GD.Print("UPPÅT HÖGER I++");
+        //                 i++;
+        //                 if (bruh)
+        //                     GD.Print("bruh");
+
+        //                     bruh = true;
+        //                 newPos = worldGrid.WorldToMap(sPath[i]);
+        //                 newPos.x -= 1;
+        //                 newPos.y -= 0;
+        //             }
+        //         }
+        //         if (xDif == 0 && yDif == 0) {
+
+        //             if (bruh)
+        //                 GD.Print("bruh");
+        //             // GD.Print("SAMMA I++;");
+
+
+        //             i++;
+        //             newPos = worldGrid.WorldToMap(sPath[i]);
+        //         }
+
+        //     }
+
+        //     newPos = worldGrid.MapToWorld(newPos);
+
+        //     newPath.Add(newPos);
+        // }
 
         //TA BORT RAKSTRÄCKOR
         newPath = RemoveRedundantPoints(newPath);
@@ -187,16 +236,6 @@ public class GameController : Node2D
 
     //ta bort raksträckor
     List<Vector2> RemoveRedundantPoints(List<Vector2> input) {
-// E 0:00:01:0748   System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-// Parameter name: index
-//   <C Source>     :0 @ void System.ThrowHelper.ThrowArgumentOutOfRange_IndexException()()
-//   <Stack Trace>  :0 @ void System.ThrowHelper.ThrowArgumentOutOfRange_IndexException()()
-//                  :0 @ Godot.Vector2 System.Collections.Generic.List`1[[Godot.Vector2, GodotSharp, Version=1.0.7272.28045, Culture=neutral, PublicKeyToken=null]].get_Item(Int32 )()
-//                  GameController.cs:192 @ System.Collections.Generic.List`1[Godot.Vector2] GameController.RemoveRedundantPoints(System.Collections.Generic.List`1[Godot.Vector2] )()
-//                  GameController.cs:183 @ Godot.Vector2[] GameController.PathSnapToGrid(Godot.Vector2[] )()
-//                  GameController.cs:106 @ void GameController._Ready()()
-
-
 
 
         List<Vector2> output = new List<Vector2>();
