@@ -5,7 +5,9 @@ public class Enemy : Node2D
 {
     [Export]
     float speed = 10;
-    float hp = 100;
+    [Export]
+    float hp = 1000;
+    [Export]
     float value = 20;
     GameController gameController;
     Vector2[] path = new Vector2[0];

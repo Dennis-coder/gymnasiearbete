@@ -18,7 +18,7 @@ public class MouseController : Node2D
     Vector2 gridPos;
     Vector2 gridWorldPos;
     Vector2 mousePos;
-    Vector2 gridSize = new Vector2(23, 23);
+    Vector2 gridSize = new Vector2(13, 8);
 
     public override void _Ready()
     {

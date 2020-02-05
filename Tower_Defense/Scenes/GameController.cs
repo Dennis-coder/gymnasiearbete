@@ -56,6 +56,7 @@ public class GameController : Node2D
     {
         
         wavePauseTimer = GetNode<Timer>("WavePauseTimer");
+
         wave = LoadWave(waveCount-1);
 
 
@@ -68,6 +69,7 @@ public class GameController : Node2D
 
         //LOAD ENEMY SCENE
         enemyScenes.Add("Enemy", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Enemy.tscn"));
+        enemyScenes.Add("EnemyBig", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/EnemyBig.tscn"));
 
 
         //PATH FINDING
@@ -123,39 +125,67 @@ public class GameController : Node2D
     //PATH-----------------------------------------------
     Vector2[] PathSnapToGrid(Vector2[] sPath) {
         List<Vector2> newPath = new List<Vector2>();
-        for (int i = 0; i < sPath.Length; i++) {
+
+
+        //LÄGG TILL FÖRSTA
+        newPath.Add(worldGrid.MapToWorld(worldGrid.WorldToMap(path[0])));
+
+
+        for (int i = 1; i < sPath.Length-1; i++) {
             Vector2 newPos = worldGrid.WorldToMap(sPath[i]);
-            Vector2 gridPos = newPos;
 
-            //FIXA FEL EV FEL vid svängarna
+            Vector2 pPos = sPath[i];
+
             if (i < sPath.Length-1) {
-                Vector2 nextGridPos = worldGrid.WorldToMap(sPath[i+1]);
+                float xDif = sPath[i+1].x - sPath[i].x;
+                float yDif = sPath[i+1].y - sPath[i].y;
 
-                int xDif = (int)(nextGridPos.x-gridPos.x);
-                int yDif = (int)(nextGridPos.y-gridPos.y);
+                if (xDif != 0 || yDif != 0) {
+                    pPos = worldGrid.MapToWorld(worldGrid.WorldToMap(pPos));
+                    //RAKSTRÄCKA     ^ == xor
+
+                    if (xDif != 0 ^ yDif != 0) {
+
+                        newPath.Add(pPos);
+                    } else {
+                        //VID SVÄNG
 
 
-                if (xDif != 0 && yDif != 0) {
-                    if (xDif == -1 && yDif == 1) {
+                        //OM DUBBLETT, lägg ej till. funkar ej dock helt
+                        if (newPath[newPath.Count-1] != pPos) {
 
-                        i++;
-                        newPos = worldGrid.WorldToMap(sPath[i]);
-                        newPos.x -= 0;
-                        newPos.y -= 1;
+                            newPath.Add(pPos);
+                        } else {
+                            GD.Print("SAMMA");
+                        }
+                        
 
+
+
+                        Vector2 nextPos = sPath[i+1];
+                        nextPos.x -= xDif/2;
+                        nextPos.y -= yDif/2;
+
+                        nextPos = worldGrid.MapToWorld(worldGrid.WorldToMap(nextPos));
+
+                        newPath.Add(nextPos);
                     }
-                }
-                if (xDif == 0 && yDif == 0) {
-                    i++;
-                    newPos = worldGrid.WorldToMap(sPath[i]);
+
+
                 }
 
             }
 
-            newPos = worldGrid.MapToWorld(newPos);
-
-            newPath.Add(newPos);
+            //Om en dubblett missades att tas bort
+            if (newPath[newPath.Count-1] == newPath[newPath.Count-2]) {
+                GD.Print("UPPTÄCKTE SAMMA");
+                newPath.RemoveAt(newPath.Count-1);
+            }
         }
+    
+        //LÄGG TILL SISTA
+        newPath.Add(worldGrid.MapToWorld(worldGrid.WorldToMap(sPath[sPath.Length-1])));
+
 
         //TA BORT RAKSTRÄCKOR
         newPath = RemoveRedundantPoints(newPath);
@@ -165,6 +195,8 @@ public class GameController : Node2D
 
     //ta bort raksträckor
     List<Vector2> RemoveRedundantPoints(List<Vector2> input) {
+
+
         List<Vector2> output = new List<Vector2>();
 
         output.Add(input[0]);
@@ -179,8 +211,10 @@ public class GameController : Node2D
             
 
             if (!(x == 2 || y == 2)) {
-                output.Add(cur);
-
+                if (cur != prev) {
+                    output.Add(cur);
+                }
+                
             }
         }
 
@@ -273,7 +307,7 @@ public class GameController : Node2D
         //checka marktyp
         int cellType = worldGrid.GetCellv(gridPos);
         
-        if (cellType > 2) { 
+        if (cellType > 0) { 
             return;
         }
 
