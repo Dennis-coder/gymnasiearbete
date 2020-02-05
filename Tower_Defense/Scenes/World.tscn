@@ -55,7 +55,7 @@ format = 1
 position = Vector2( 48, 216 )
 
 [node name="Spawn" type="Node2D" parent="."]
-position = Vector2( 336, 60 )
+position = Vector2( 336, 48 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 192, 108 )
@@ -75,13 +75,13 @@ margin_bottom = 96.273
 mouse_filter = 2
 
 [node name="Money" type="Label" parent="Stats"]
-margin_right = 244.0
+margin_right = 243.0
 margin_bottom = 14.0
 text = "$: "
 
 [node name="Health" type="Label" parent="Stats"]
 margin_top = 18.0
-margin_right = 244.0
+margin_right = 243.0
 margin_bottom = 32.0
 text = "Hp:"
 

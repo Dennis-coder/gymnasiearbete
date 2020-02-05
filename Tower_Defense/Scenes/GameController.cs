@@ -146,87 +146,66 @@ public class GameController : Node2D
     Vector2[] PathSnapToGrid(Vector2[] sPath) {
         List<Vector2> newPath = new List<Vector2>();
 
-        
-        for (int i = 0; i < sPath.Length; i++) {
+
+        //LÄGG TILL FÖRSTA
+        newPath.Add(worldGrid.MapToWorld(worldGrid.WorldToMap(path[0])));
+
+
+        for (int i = 1; i < sPath.Length-1; i++) {
             Vector2 newPos = worldGrid.WorldToMap(sPath[i]);
 
             Vector2 pPos = sPath[i];
 
-        if (i < sPath.Length-1) {
-            float xDif = sPath[i+1].x - sPath[i].x;
-            float yDif = sPath[i+1].y - sPath[i].y;
-            GD.Print("i: ", i, "; realX: ", sPath[i].x, "; realY: ", sPath[i].y, "; realXDif: ", xDif, "; realYDif: ", yDif);
+            if (i < sPath.Length-1) {
+                float xDif = sPath[i+1].x - sPath[i].x;
+                float yDif = sPath[i+1].y - sPath[i].y;
 
-            if (xDif != 0 && yDif != 0) {
+                if (xDif != 0 || yDif != 0) {
+                    pPos = worldGrid.MapToWorld(worldGrid.WorldToMap(pPos));
+                    //RAKSTRÄCKA     ^ == xor
+
+                    if (xDif != 0 ^ yDif != 0) {
+
+                        newPath.Add(pPos);
+                    } else {
+                        //VID SVÄNG
+
+
+                        //OM DUBBLETT, lägg ej till. funkar ej dock helt
+                        if (newPath[newPath.Count-1] != pPos) {
+
+                            newPath.Add(pPos);
+                        } else {
+                            GD.Print("SAMMA");
+                        }
+                        
 
 
 
+                        Vector2 nextPos = sPath[i+1];
+                        nextPos.x -= xDif/2;
+                        nextPos.y -= yDif/2;
+
+                        nextPos = worldGrid.MapToWorld(worldGrid.WorldToMap(nextPos));
+
+                        newPath.Add(nextPos);
+                    }
+
+
+                }
 
             }
 
+            //Om en dubblett missades att tas bort
+            if (newPath[newPath.Count-1] == newPath[newPath.Count-2]) {
+                GD.Print("UPPTÄCKTE SAMMA");
+                newPath.RemoveAt(newPath.Count-1);
+            }
         }
+    
+        //LÄGG TILL SISTA
+        newPath.Add(worldGrid.MapToWorld(worldGrid.WorldToMap(sPath[sPath.Length-1])));
 
-            newPath.Add(pPos);
-        }
-
-        // for (int i = 0; i < sPath.Length; i++) {
-        //     Vector2 newPos = worldGrid.WorldToMap(sPath[i]);
-        //     Vector2 gridPos = newPos;
-
-        //     if (i < sPath.Length-1) {
-        //         float realXDif = sPath[i+1].x - sPath[i].x;
-        //         float realYDif = sPath[i+1].y - sPath[i].y;
-        //         GD.Print("i: ", i, "; realX: ", sPath[i].x, "; realY: ", sPath[i].y, "; realXDif: ", realXDif, "; realYDif: ", realYDif);
-        //     }
-        //     //DET FUCKAR NÄR DET KOMMER TVÅ SVÄNGAR PÅ RAKEN
-        //     //FIXA FEL EV FEL vid svängarna
-        //     if (i < sPath.Length-1) {
-        //         Vector2 nextGridPos = worldGrid.WorldToMap(sPath[i+1]);
-        //         bool bruh = false;
-        //         int xDif = (int)(nextGridPos.x-gridPos.x);
-        //         int yDif = (int)(nextGridPos.y-gridPos.y);
-        //         // GD.Print("i: ", i, "; x: ", gridPos.x, "; y: ", gridPos.y, "; xDif: ", xDif, "; yDif: ", yDif);
-
-        //         if (xDif != 0 && yDif != 0) {
-        //             //Fel vid sväng nedåt åt vänster
-        //             if (xDif == -1 && yDif == 1) {
-        //                 // GD.Print("NEDÅT VÄNSTER I++");
-        //                 bruh = true;
-        //                 i++;
-        //                 newPos = worldGrid.WorldToMap(sPath[i]);
-        //                 newPos.x -= 0;
-        //                 newPos.y -= 1;
-
-        //             } else if (xDif == 1 && yDif == -1) {
-        //                 //Fel vid sväng uppåt åt höger
-        //                 // GD.Print("UPPÅT HÖGER I++");
-        //                 i++;
-        //                 if (bruh)
-        //                     GD.Print("bruh");
-
-        //                     bruh = true;
-        //                 newPos = worldGrid.WorldToMap(sPath[i]);
-        //                 newPos.x -= 1;
-        //                 newPos.y -= 0;
-        //             }
-        //         }
-        //         if (xDif == 0 && yDif == 0) {
-
-        //             if (bruh)
-        //                 GD.Print("bruh");
-        //             // GD.Print("SAMMA I++;");
-
-
-        //             i++;
-        //             newPos = worldGrid.WorldToMap(sPath[i]);
-        //         }
-
-        //     }
-
-        //     newPos = worldGrid.MapToWorld(newPos);
-
-        //     newPath.Add(newPos);
-        // }
 
         //TA BORT RAKSTRÄCKOR
         newPath = RemoveRedundantPoints(newPath);
@@ -252,8 +231,10 @@ public class GameController : Node2D
             
 
             if (!(x == 2 || y == 2)) {
-                output.Add(cur);
-
+                if (cur != prev) {
+                    output.Add(cur);
+                }
+                
             }
         }
 
