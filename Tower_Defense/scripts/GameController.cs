@@ -240,6 +240,7 @@ public class GameController : Node2D
 
     void StartWave() {
         if (waveInAction) {
+            GD.Print("Wave already in action!");
             return;
         }
 
