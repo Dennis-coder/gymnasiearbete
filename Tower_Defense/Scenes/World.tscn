@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Scenes/GameController.cs" type="Script" id=1]
+[ext_resource path="res://scripts/GameController.cs" type="Script" id=1]
 [ext_resource path="res://tiles/Grasslands.tres" type="TileSet" id=2]
 [ext_resource path="res://scripts/MouseController.cs" type="Script" id=3]
 [ext_resource path="res://Sprites/CrossHair.png" type="Texture" id=4]

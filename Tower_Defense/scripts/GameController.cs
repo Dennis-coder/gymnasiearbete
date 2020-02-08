@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 public class GameController : Node2D
 {
@@ -10,12 +11,13 @@ public class GameController : Node2D
         public string EnemyType;
         public float PauseTime;
 
-        public SpawnAction(string x, float y) {
-            this.EnemyType = x;
-            this.PauseTime = y;
+        public SpawnAction(string enemyType, float pauseTime) {
+            this.EnemyType = enemyType;
+            this.PauseTime = pauseTime;
         }
     }
 
+    string jsonFilePath = "res://scripts/waves.json";
     Timer wavePauseTimer;
     bool waveInAction;
     int waveCount = 1;
@@ -45,40 +47,18 @@ public class GameController : Node2D
     //ENEMIES
     Dictionary<string, PackedScene> enemyScenes = new Dictionary<string, PackedScene>();
 
+
     // GUI
     public Label money;
     public Label health;
 
     public override void _Ready()
     {
+        
         wavePauseTimer = GetNode<Timer>("WavePauseTimer");
-        wave.Add(new SpawnAction("Enemy",1f));
-        wave.Add(new SpawnAction("Enemy",1f));
-        wave.Add(new SpawnAction("Enemy",1f));
-        wave.Add(new SpawnAction("Enemy",1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",0.1f));
-        wave.Add(new SpawnAction("Enemy",10f));
-        wave.Add(new SpawnAction("EnemyBig",10f));
 
-        GD.Print(wave.Count);
+        wave = LoadWave(waveCount-1);
+
 
         //ASSIGN WORLD GRID
         worldGrid = FindNode("WorldGrid") as TileMap;
@@ -260,6 +240,7 @@ public class GameController : Node2D
 
     void StartWave() {
         if (waveInAction) {
+            GD.Print("Wave already in action!");
             return;
         }
 
@@ -276,6 +257,36 @@ public class GameController : Node2D
         GD.Print("Wave ended");
         waveCount++;
         waveInAction = false;
+        wave = LoadWave(waveCount-1);
+    }
+
+    List<SpawnAction> LoadWave(int whichWave) {
+        //Godot.Collections.Dictionary
+        //Godot.Collections.Array
+        List<SpawnAction> loadedWave = new List<SpawnAction>();
+        File jsonFile = new File();
+        jsonFile.Open(jsonFilePath, 1);
+        JSONParseResult parse = JSON.Parse(jsonFile.GetAsText());
+        jsonFile.Close();
+
+        Godot.Collections.Array resultAll = parse.Result as Godot.Collections.Array;
+
+        if (whichWave >= resultAll.Count) {
+            GD.Print("NO MORE WAVES");
+            return new List<SpawnAction>();
+        }
+
+
+
+        Godot.Collections.Array result = resultAll[whichWave] as Godot.Collections.Array;
+
+
+        foreach (Godot.Collections.Dictionary action in result) {
+            loadedWave.Add(new SpawnAction((string) action["EnemyType"], (float) action["PauseTime"]));
+        }
+
+
+        return loadedWave;
     }
 
     //-------------------------------------------------PUBLIC FUNCTIONS--------------------------------------------------------
