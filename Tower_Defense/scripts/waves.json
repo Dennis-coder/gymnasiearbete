@@ -1,7 +1,5 @@
 [
     [
-        {"EnemyType": "Goblin", "PauseTime": 5},
-        {"EnemyType": "Goblin", "PauseTime": 5},
         {"EnemyType": "Goblin", "PauseTime": 5}
     ],
     [
@@ -18,45 +16,20 @@
 
     ],
     [
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 0.1},
-        {"EnemyType": "Enemy", "PauseTime": 5},
-        {"EnemyType": "EnemyBig", "PauseTime": 0.1}
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Elephant", "PauseTime": 3},
+        {"EnemyType": "Elephant", "PauseTime": 3},
+        {"EnemyType": "Elephant", "PauseTime": 3},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 5},
+        {"EnemyType": "Carriage", "PauseTime": 0.1}
+
     ]
 ]

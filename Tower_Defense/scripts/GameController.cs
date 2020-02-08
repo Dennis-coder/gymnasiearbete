@@ -74,6 +74,8 @@ public class GameController : Node2D
         enemyScenes.Add("EnemyBig", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/EnemyBig.tscn"));
         enemyScenes.Add("Goblin", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Goblin.tscn"));
         enemyScenes.Add("Elephant", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Elephant.tscn"));
+        enemyScenes.Add("Fast", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Fast.tscn"));
+        enemyScenes.Add("Carriage", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Carriage.tscn"));
 
         //PATH FINDING
         debugLine = FindNode("DebugLine") as Line2D;
@@ -113,10 +115,21 @@ public class GameController : Node2D
         AddChild(enemy);
     }
 
+    public void SpawnEnemyInProgress(string enemyType, Vector2 pos, int target) {
+        PackedScene scene = enemyScenes[enemyType];
+
+        Enemy enemy = scene.Instance() as Enemy;
+        enemy.SetPosition(pos);
+        enemy.SetTarget(target);
+
+        RemainingEnemies++;
+
+        AddChild(enemy);
+    }
+
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta) {
-
         if (Input.IsActionJustPressed("ui_select")) {
             StartWave();
         }
@@ -159,7 +172,7 @@ public class GameController : Node2D
 
                             newPath.Add(pPos);
                         } else {
-                            GD.Print("SAMMA");
+                            // GD.Print("SAMMA");
                         }
                         
 
@@ -181,7 +194,7 @@ public class GameController : Node2D
 
             //Om en dubblett missades att tas bort
             if (newPath[newPath.Count-1] == newPath[newPath.Count-2]) {
-                GD.Print("UPPTÄCKTE SAMMA");
+                // GD.Print("UPPTÄCKTE SAMMA");
                 newPath.RemoveAt(newPath.Count-1);
             }
         }
