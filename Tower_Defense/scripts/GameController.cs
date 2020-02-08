@@ -66,11 +66,14 @@ public class GameController : Node2D
         //LOAD TOWER SCENE
         towerScenes.Add("Tower", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Tower.tscn"));
         towerCosts.Add("Tower", 40);
+        towerScenes.Add("Shoot", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Shoot.tscn"));
+        towerCosts.Add("Shoot", 40);
 
         //LOAD ENEMY SCENE
         enemyScenes.Add("Enemy", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Enemy.tscn"));
         enemyScenes.Add("EnemyBig", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/EnemyBig.tscn"));
-
+        enemyScenes.Add("Goblin", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Goblin.tscn"));
+        enemyScenes.Add("Elephant", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Elephant.tscn"));
 
         //PATH FINDING
         debugLine = FindNode("DebugLine") as Line2D;

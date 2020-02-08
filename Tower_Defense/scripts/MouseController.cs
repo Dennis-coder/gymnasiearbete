@@ -13,7 +13,7 @@ public class MouseController : Node2D
 	public Camera2D camera2D; 
     public TileMap worldGrid;
     
-    string curTower = "Tower";
+    string curTower = "Shoot";
 
     Vector2 gridPos;
     Vector2 gridWorldPos;

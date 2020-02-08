@@ -24,8 +24,8 @@ D:/lukas/Documents/Godot/gymnasiearbete-master/gymnasiearbete/Tower_Defense/.mon
 D:/lukas/Documents/Godot/gymnasiearbete-master/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csprojResolveAssemblyReference.cache
 D:/lukas/Documents/Godot/gymnasiearbete-master/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.dll
 D:/lukas/Documents/Godot/gymnasiearbete-master/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.pdb
-D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.dll
-D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.pdb
-D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
-D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
-D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
+D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.dll
+D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.pdb
+D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csprojResolveAssemblyReference.cache
+D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.dll
+D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.pdb

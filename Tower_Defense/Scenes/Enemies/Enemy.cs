@@ -13,6 +13,8 @@ public class Enemy : Node2D
     Vector2[] path = new Vector2[0];
     Vector2 startPos;
     int target = 1;
+    
+    AnimationPlayer anim;
 
 
     public override void _Ready() {
@@ -20,9 +22,11 @@ public class Enemy : Node2D
         gameController = GetTree().GetRoot().GetNode("World") as GameController; 
         path = gameController.RequestPath();
 
+        anim = FindNode("AnimationPlayer") as AnimationPlayer;
 
         startPos = GetPosition();
-        
+
+        UpdateAnimation();
     }
 
     public override void _Process(float delta)
@@ -72,6 +76,8 @@ public class Enemy : Node2D
             startPos = path[target];
             SetPosition(startPos);
             target++;
+
+            UpdateAnimation();
         }
     }
 
@@ -90,5 +96,24 @@ public class Enemy : Node2D
             gameController.EnemyKilled();
             QueueFree();
         }
+    }
+
+    private void UpdateAnimation() {
+        if (target >= path.Length) {
+            return;
+        }
+
+        Vector2 animDir = new Vector2(path[target]-startPos).Normalized();
+
+        if (animDir == new Vector2(1, 0)) {
+            anim.Play("run_right");
+        } else if (animDir == new Vector2(-1, 0)) {
+            anim.Play("run_left");
+        } else if (animDir == new Vector2(0, 1)) {
+            anim.Play("run_down");
+        } else if (animDir == new Vector2(0, -1)) {
+            anim.Play("run_up");
+        }
+
     }
 }
