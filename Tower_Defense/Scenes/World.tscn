@@ -106,6 +106,9 @@ margin_bottom = 24.0
 toggle_mode = true
 texture_normal = ExtResource( 6 )
 stretch_mode = 4
+
+[node name="bDL" type="Line2D" parent="."]
+points = PoolVector2Array( 23.2668, -74.7855 )
 [connection signal="area_entered" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_entered"]
 [connection signal="area_exited" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_exited"]
 [connection signal="timeout" from="WavePauseTimer" to="." method="_on_WavePauseTimer_timeout"]

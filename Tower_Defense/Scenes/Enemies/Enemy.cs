@@ -34,6 +34,9 @@ public class Enemy : Node2D
         float moveDist = speed * delta;
         pathFollow(moveDist);
 
+        if (Input.IsActionJustPressed("ui_select")) {
+            Die();
+        }
     }
 
     public float DistanceToGoal() {

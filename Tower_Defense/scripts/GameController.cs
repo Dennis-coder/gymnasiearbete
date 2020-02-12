@@ -27,13 +27,14 @@ public class GameController : Node2D
 
 
     //GRIDS
-    TileMap worldGrid;
+    public TileMap worldGrid;
     Navigation2D nav2d;
     Node2D spawn;
     Node2D goal;
     Vector2[] path = new Vector2[0];
     Line2D debugLine;
     Line2D debugLineSnapped;
+    Line2D bDL;
 
     float balance;
     float healthPoints;
@@ -85,12 +86,15 @@ public class GameController : Node2D
         goal = GetNode<Node2D>("ParasitNiklas");
         path = nav2d.GetSimplePath(spawn.GetGlobalPosition(), goal.GetGlobalPosition(), false);
         debugLine.Points = path;
+
+        bDL = FindNode("bDL") as Line2D;
         
         //ALIGN PATH TO GRID
         GD.Print(path.Length);
         path = PathSnapToGrid(path);
         GD.Print(path.Length);
         debugLineSnapped.Points = path;
+
 
         money = GetTree().GetRoot().GetNode("World").FindNode("Money") as Label;
         GD.Print(money.GetName());
@@ -238,6 +242,101 @@ public class GameController : Node2D
 
         return output;
     }
+    public Tuple<Vector2, int> BackTrackPath(Vector2 startPos, List<Vector2> bPath, float distance, int targeted) {
+        GD.Print("startPos: ", startPos, "; targeted: ", targeted);
+        Vector2 pos = startPos;
+        int t = targeted - 1;
+
+        // distance += 1f;
+
+        bDL.
+
+        float d = 0;
+
+        while (distance > d) {
+
+            GD.Print("Distance from ", pos, " (pos) to ", bPath[t], " path[", t, "] == ", d);
+            GD.Print("pos: ", gameController.worldGrid.WorldToMap(pos), "; path[t]: ", gameController.worldGrid.WorldToMap(bPath[t]), "distance: ", distance, "; d: ", d, "; t: ", t);
+
+
+            d = pos.DistanceTo(bPath[t]);
+            
+            pos = bPath[t];
+            distance -= d;
+            t--;
+        }
+
+        /* while (distance < 0 && t > 0) {
+            d = pos.DistanceTo(path[t]);
+
+            GD.Print("Distance from ", pos, " (pos) to ", path[t], " path[", t, "] == ", d);
+            GD.Print("pos: ", gameController.worldGrid.WorldToMap(pos), "; path[t]: ", gameController.worldGrid.WorldToMap(path[t]), "distance: ", distance, "; d: ", d, "; t: ", t);
+
+
+            if (distance > d) {
+                GD.Print("t-- och ny pos");
+                pos = path[t];
+                distance -= d;
+                t--;
+            }
+
+            
+
+            /*
+
+                tot = 9
+dir = 9,1-4,1=5,0
+                    9,1    7         4,1
+                        --------------
+                        |
+                        |
+                    5   |
+                        |
+                2       |
+                ---------
+                    .----
+                      1
+
+                    9-1 8
+
+                    8-5 3
+
+                    3-7 -4
+
+                    -4
+
+
+
+            *
+            
+        }*/
+
+        GD.Print("Final distance: ", distance, "Final t: ", t);
+
+        if (t < 0) {
+                pos = bPath[0] + new Vector2(bPath[0]-bPath[1]).Normalized()*Math.Abs(distance);
+                t = 1;
+
+                return Tuple.Create(pos, t); 
+        }
+
+        if (distance <= 0) {
+            Vector2 dir = new Vector2(path[t]-path[t-1]).Normalized();
+            // t++;
+            // distance += d;
+            pos = pos - dir*distance;
+
+            GD.Print("pos: ", pos+dir*distance, "; dir: ", dir, "; Total: ", dir*distance, "; newpos: ", pos);
+
+            
+
+        }
+        
+
+        return Tuple.Create(pos, t+2);
+    }
+
+
 
     //WAVECONTROLLER-------------------------------------------------------
     public void _on_WavePauseTimer_timeout() {

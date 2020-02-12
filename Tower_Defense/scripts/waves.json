@@ -1,6 +1,6 @@
 [
     [
-        {"EnemyType": "Goblin", "PauseTime": 5}
+        {"EnemyType": "Carriage", "PauseTime": 5}
     ],
     [
         {"EnemyType": "Goblin", "PauseTime": 0.1},
