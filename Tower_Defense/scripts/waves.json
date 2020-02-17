@@ -1,6 +1,6 @@
 [
     [
-        {"EnemyType": "Carriage", "PauseTime": 5}
+        {"EnemyType": "Goblin", "PauseTime": 5}
     ],
     [
         {"EnemyType": "Goblin", "PauseTime": 0.1},
@@ -20,7 +20,7 @@
         {"EnemyType": "Goblin", "PauseTime": 0.1},
         {"EnemyType": "Goblin", "PauseTime": 0.1},
         {"EnemyType": "Goblin", "PauseTime": 0.1},
-        {"EnemyType": "Goblin", "PauseTime": 0.1},
+        {"EnemyType": "Goblin", "PauseTime": 3},
         {"EnemyType": "Elephant", "PauseTime": 3},
         {"EnemyType": "Elephant", "PauseTime": 3},
         {"EnemyType": "Elephant", "PauseTime": 3},

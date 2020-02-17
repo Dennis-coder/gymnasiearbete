@@ -16,7 +16,7 @@ public class Carriage : Enemy
         Vector2 pos = GetPosition();
         int nT = target;
         for (int i = 0; i < contentAmount; i++) {
-            var tuple = gameController.BackTrackPath(pos, 24, nT);
+            var tuple = gameController.BackTrackPath(pos, path, 24, nT);
 
             GD.Print("Spawning Enemy at: ", gameController.worldGrid.WorldToMap(tuple.Item1), " with target: ", tuple.Item2, " at: ", gameController.worldGrid.WorldToMap(path[tuple.Item2]));
             gameController.SpawnEnemyInProgress(content, tuple.Item1, tuple.Item2);

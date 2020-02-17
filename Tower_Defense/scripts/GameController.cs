@@ -104,6 +104,9 @@ public class GameController : Node2D
 
         EarnMoney(100);
         UpdateHealth(1500);
+
+        Tuple<Vector2, int> tuple = BackTrackPath(path, worldGrid.MapToWorld(new Vector2(8,6)), 24, 3);
+        GD.Print("btpi: ", tuple.Item2);
     }
 
     public Vector2[] RequestPath() {
@@ -242,21 +245,27 @@ public class GameController : Node2D
 
         return output;
     }
-    public Tuple<Vector2, int> BackTrackPath(Vector2 startPos, List<Vector2> bPath, float distance, int targeted) {
+    public Tuple<Vector2, int> BackTrackPath(Vector2[] inPath, Vector2 startPos, float distance, int targeted) {
+        List<Vector2> bPath = new List<Vector2>();
+
+        for (int i = 0; i < inPath.Length; i++) {
+            bPath.Add(inPath[i]);
+        }
+
         GD.Print("startPos: ", startPos, "; targeted: ", targeted);
         Vector2 pos = startPos;
         int t = targeted - 1;
 
         // distance += 1f;
 
-        bDL.
+
 
         float d = 0;
 
         while (distance > d) {
 
             GD.Print("Distance from ", pos, " (pos) to ", bPath[t], " path[", t, "] == ", d);
-            GD.Print("pos: ", gameController.worldGrid.WorldToMap(pos), "; path[t]: ", gameController.worldGrid.WorldToMap(bPath[t]), "distance: ", distance, "; d: ", d, "; t: ", t);
+            GD.Print("pos: ", worldGrid.WorldToMap(pos), "; path[t]: ", worldGrid.WorldToMap(bPath[t]), "distance: ", distance, "; d: ", d, "; t: ", t);
 
 
             d = pos.DistanceTo(bPath[t]);
