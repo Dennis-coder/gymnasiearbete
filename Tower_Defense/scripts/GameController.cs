@@ -245,104 +245,42 @@ public class GameController : Node2D
 
         return output;
     }
-    public Tuple<Vector2, int> BackTrackPath(Vector2[] inPath, Vector2 startPos, float distance, int targeted) {
-        List<Vector2> bPath = new List<Vector2>();
+    public Tuple<Vector2, int> BackTrackPath(Vector2[] inPath, Vector2 startPos, float remainingDistance, int targeted) {
+        int t = targeted;
 
-        for (int i = 0; i < inPath.Length; i++) {
-            bPath.Add(inPath[i]);
-        }
-
-        GD.Print("startPos: ", startPos, "; targeted: ", targeted);
         Vector2 pos = startPos;
-        int t = targeted - 1;
-
-        // distance += 1f;
 
 
-
-        float d = 0;
-
-        while (distance > d) {
-
-            GD.Print("Distance from ", pos, " (pos) to ", bPath[t], " path[", t, "] == ", d);
-            GD.Print("pos: ", worldGrid.WorldToMap(pos), "; path[t]: ", worldGrid.WorldToMap(bPath[t]), "distance: ", distance, "; d: ", d, "; t: ", t);
+        float dist = pos.DistanceTo(inPath[t-1]);
 
 
-            d = pos.DistanceTo(bPath[t]);
-            
-            pos = bPath[t];
-            distance -= d;
-            t--;
-        }
+        while (remainingDistance > dist) {
+            if (t <= 1) {
+                    pos = inPath[0] + new Vector2(inPath[0]-inPath[1]).Normalized()*Math.Abs(remainingDistance);
+                    t = 1;
 
-        /* while (distance < 0 && t > 0) {
-            d = pos.DistanceTo(path[t]);
-
-            GD.Print("Distance from ", pos, " (pos) to ", path[t], " path[", t, "] == ", d);
-            GD.Print("pos: ", gameController.worldGrid.WorldToMap(pos), "; path[t]: ", gameController.worldGrid.WorldToMap(path[t]), "distance: ", distance, "; d: ", d, "; t: ", t);
-
-
-            if (distance > d) {
-                GD.Print("t-- och ny pos");
-                pos = path[t];
-                distance -= d;
-                t--;
+                    return Tuple.Create(pos, t); 
             }
-
-            
-
-            /*
-
-                tot = 9
-dir = 9,1-4,1=5,0
-                    9,1    7         4,1
-                        --------------
-                        |
-                        |
-                    5   |
-                        |
-                2       |
-                ---------
-                    .----
-                      1
-
-                    9-1 8
-
-                    8-5 3
-
-                    3-7 -4
-
-                    -4
-
-
-
-            *
-            
-        }*/
-
-        GD.Print("Final distance: ", distance, "Final t: ", t);
-
-        if (t < 0) {
-                pos = bPath[0] + new Vector2(bPath[0]-bPath[1]).Normalized()*Math.Abs(distance);
-                t = 1;
-
-                return Tuple.Create(pos, t); 
-        }
-
-        if (distance <= 0) {
-            Vector2 dir = new Vector2(path[t]-path[t-1]).Normalized();
-            // t++;
-            // distance += d;
-            pos = pos - dir*distance;
-
-            GD.Print("pos: ", pos+dir*distance, "; dir: ", dir, "; Total: ", dir*distance, "; newpos: ", pos);
-
-            
-
-        }
         
+        
+            remainingDistance -= dist;
+            t--;
+            pos = path[t];
+            dist = pos.DistanceTo(inPath[t-1]);
 
-        return Tuple.Create(pos, t+2);
+            
+        }
+
+
+        Vector2 spawnPos;
+
+        float pr = remainingDistance/(pos.DistanceTo(path[t-1]));
+        spawnPos = pos.LinearInterpolate(path[t-1], pr);
+        
+        
+        
+        return Tuple.Create(spawnPos, t);
+        
     }
 
 
