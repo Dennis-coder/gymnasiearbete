@@ -32,6 +32,8 @@ public class Tower : Node2D
         towerRange = (FindNode("Range") as CollisionShape2D).GetShape() as CircleShape2D;
         towerRange.Radius = range;
 
+        GD.Print(towerRange.GetRadius(), " vs ", range);
+
         shootTimer = rateOfFire;
 
         anim = FindNode("AnimationPlayer") as AnimationPlayer;
@@ -89,5 +91,9 @@ public class Tower : Node2D
 
     public float GetRange() {
         return range;
+    }
+
+    public float GetShootTimer() {
+        return shootTimer/rateOfFire;
     }
 }

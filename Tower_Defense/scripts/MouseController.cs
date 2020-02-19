@@ -30,7 +30,7 @@ public class MouseController : Node2D
         GD.Print("Cam:" + camera2D.GetOffset().x);
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;
-        uiController = FindNode("UIController") as UIController;
+        uiController = GetTree().GetRoot().GetNode("World").FindNode("UIController") as UIController;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,14 +60,14 @@ public class MouseController : Node2D
         InputEventMouseMotion eM = @event as InputEventMouseMotion;
 
         if (eM != null) {
-            if (!cellHighlight.IsCellVacant()) {
-                GD.Print(cellHighlight.GetCurTower());
+            uiController.SetTower(cellHighlight.GetCurTower());
+            // if (!cellHighlight.IsCellVacant()) {
 
-                uiController.SetTower(cellHighlight.GetCurTower());
-            } else {
-                uiController.SetTower(false);
-                // GD.Print(cellHighlight.GetCurTower(), "empty");
-            }
+            //     uiController.SetTower(cellHighlight.GetCurTower());
+            // } else {
+            //     uiController.Set();
+            //     // GD.Print(cellHighlight.GetCurTower(), "empty");
+            // }
             
 
             mousePos = eM.GlobalPosition - new Vector2(camera2D.GetOffset().x, 0);
