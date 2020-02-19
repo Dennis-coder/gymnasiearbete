@@ -9,9 +9,11 @@ public class MouseController : Node2D
 
     // Called when the node enters the scene tree for the first time.
     GameController gameController;
+    UIController uiController;
     CellHighlight cellHighlight;
 	public Camera2D camera2D; 
     public TileMap worldGrid;
+    
     
     string curTower = "Shoot";
 
@@ -28,6 +30,7 @@ public class MouseController : Node2D
         GD.Print("Cam:" + camera2D.GetOffset().x);
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;
+        uiController = FindNode("UIController") as UIController;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,6 +60,16 @@ public class MouseController : Node2D
         InputEventMouseMotion eM = @event as InputEventMouseMotion;
 
         if (eM != null) {
+            if (!cellHighlight.IsCellVacant()) {
+                GD.Print(cellHighlight.GetCurTower());
+
+                uiController.SetTower(cellHighlight.GetCurTower());
+            } else {
+                uiController.SetTower(false);
+                // GD.Print(cellHighlight.GetCurTower(), "empty");
+            }
+            
+
             mousePos = eM.GlobalPosition - new Vector2(camera2D.GetOffset().x, 0);
         }
 

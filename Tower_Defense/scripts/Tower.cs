@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class Tower : Node2D
 {
+    [Export]
     public string type = "Tower";
     [Export]
     float damage = 1;
@@ -19,7 +20,8 @@ public class Tower : Node2D
     CircleShape2D towerRange;
 
     Vector2 shootDir;
-    
+    AnimationPlayer anim;
+
     float level = 1;
     IList<Enemy> enemiesInRange = new List<Enemy>();
 
@@ -31,6 +33,9 @@ public class Tower : Node2D
         towerRange.Radius = range;
 
         shootTimer = rateOfFire;
+
+        anim = FindNode("AnimationPlayer") as AnimationPlayer;
+        anim.Play("idle");
     }
 
     public override void _Process(float delta) {
@@ -80,5 +85,9 @@ public class Tower : Node2D
         projectile.SetPosition(rootPos);
         projectile.dir = rootPos.DirectionTo(targetPos + new Vector2(12, 12));
         GetTree().GetRoot().GetNode("World").AddChild(projectile);
+    }
+
+    public float GetRange() {
+        return range;
     }
 }

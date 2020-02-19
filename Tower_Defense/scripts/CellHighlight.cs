@@ -8,6 +8,7 @@ public class CellHighlight : Sprite
 
     public bool IsCellVacant() {
         return curTower == null;
+        
     }
 
     public Tower GetCurTower() {

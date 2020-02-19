@@ -6,7 +6,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "idle"
-length = 3.9
+length = 1.6
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -15,7 +15,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.9, 1, 1.9, 2, 2.9, 3, 3.9 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
@@ -29,6 +29,7 @@ radius = 128.0
 
 [node name="Tower" type="Node2D"]
 script = ExtResource( 1 )
+type = "Shoot"
 rateOfFire = 0.5
 projectileType = ExtResource( 2 )
 
@@ -36,9 +37,10 @@ projectileType = ExtResource( 2 )
 position = Vector2( 12, 12 )
 texture = ExtResource( 3 )
 hframes = 8
-frame = 6
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+playback_speed = 1.8
 anims/idle = SubResource( 1 )
 
 [node name="Detection Mouse" type="Area2D" parent="."]

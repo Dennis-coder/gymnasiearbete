@@ -4,7 +4,7 @@ using System;
 public class Carriage : Enemy
 {
     [Export]
-    string content = "Elephant";
+    string content = "Fast";
     [Export]
     int contentAmount = 3;
 
