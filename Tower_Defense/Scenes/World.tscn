@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/GameController.cs" type="Script" id=1]
 [ext_resource path="res://tiles/Grasslands.tres" type="TileSet" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://scripts/CellHighlight.cs" type="Script" id=5]
 [ext_resource path="res://Sprites/Tower.png" type="Texture" id=6]
 [ext_resource path="res://scripts/UIController.cs" type="Script" id=7]
+[ext_resource path="res://scripts/RangeVisualizer.cs" type="Script" id=8]
+[ext_resource path="res://scripts/TimerVisualizer.cs" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11, 11 )
@@ -110,15 +112,22 @@ toggle_mode = true
 texture_normal = ExtResource( 6 )
 stretch_mode = 4
 
-[node name="bDL" type="Line2D" parent="."]
-points = PoolVector2Array( 23.2668, -74.7855 )
-default_color = Color( 1, 0, 0, 1 )
-texture_mode = 196620
-
 [node name="UIController" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 script = ExtResource( 7 )
+
+[node name="TowerStatVisualizer" type="CanvasLayer" parent="UIController"]
+
+[node name="RangeVisualizer" type="Control" parent="UIController/TowerStatVisualizer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+
+[node name="TimerVisualizer" type="Control" parent="UIController/TowerStatVisualizer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 9 )
 [connection signal="area_entered" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_entered"]
 [connection signal="area_exited" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_exited"]
 [connection signal="timeout" from="WavePauseTimer" to="." method="_on_WavePauseTimer_timeout"]

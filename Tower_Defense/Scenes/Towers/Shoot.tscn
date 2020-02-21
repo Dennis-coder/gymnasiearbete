@@ -32,7 +32,7 @@ script = ExtResource( 1 )
 type = "Shoot"
 rateOfFire = 0.5
 projectileType = ExtResource( 2 )
-range = 36.0
+range = 60.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 12, 12 )
