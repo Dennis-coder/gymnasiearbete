@@ -9,8 +9,10 @@ public class Projectile : Sprite
     float lifetime = 2;
     RayCast2D ray;
 
-    public Vector2 dir = new Vector2(0.5f,0.5f);  
 
+    public Vector2 dir = new Vector2(0.5f,0.5f);  
+    public float damage;
+    
     public override void _Ready() {
         SetRotation(GetAngleTo(GetPosition() + dir));
 

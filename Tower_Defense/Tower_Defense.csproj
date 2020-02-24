@@ -57,6 +57,7 @@
     <Compile Include="scripts\MouseController.cs" />
     <Compile Include="scripts\Projectile.cs" />
     <Compile Include="scripts\RangeVisualizer.cs" />
+    <Compile Include="scripts\Shotgun.cs" />
     <Compile Include="scripts\TimerVisualizer.cs" />
     <Compile Include="scripts\Tower.cs" />
     <Compile Include="scripts\UIController.cs" />

@@ -7,13 +7,13 @@ public class Tower : Node2D
     [Export]
     public string type = "Tower";
     [Export]
-    float damage = 1;
+    protected float damage = 20;
     [Export]
     float hp = 10;
     [Export]
     float rateOfFire;
     [Export]
-    PackedScene projectileType;
+    protected PackedScene projectileType;
     [Export]
     float range = 128;
     [Export]
@@ -34,7 +34,7 @@ public class Tower : Node2D
 
         GD.Print(towerRange.GetRadius(), " vs ", range);
 
-        shootTimer = rateOfFire;
+        // shootTimer = rateOfFire;
 
         anim = FindNode("AnimationPlayer") as AnimationPlayer;
         anim.Play("idle");
@@ -53,14 +53,15 @@ public class Tower : Node2D
                     t = i;
                 }
             }
-
             if (shootTimer <= 0) {
                 shootTimer = rateOfFire;
                 Shoot(enemiesInRange[t].GetPosition());
-            } else {
-                shootTimer -= delta;
             }
+
         }
+
+        
+        shootTimer = (shootTimer > 0) ? shootTimer - delta : 0;
     }
 
     private void _on_Detection_Enemy_area_entered(Area2D area) {
@@ -79,13 +80,14 @@ public class Tower : Node2D
         }
     }
 
-    void Shoot(Vector2 targetPos) {
+    protected virtual void Shoot(Vector2 targetPos) {
         Projectile projectile = projectileType.Instance() as Projectile;
         Vector2 rootPos = GetPosition();
         rootPos.x += 12;
         rootPos.y += 12;
         projectile.SetPosition(rootPos);
         projectile.dir = rootPos.DirectionTo(targetPos + new Vector2(12, 12));
+        projectile.damage = damage;
         GetTree().GetRoot().GetNode("World").AddChild(projectile);
     }
 

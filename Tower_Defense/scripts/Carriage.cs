@@ -4,9 +4,9 @@ using System;
 public class Carriage : Enemy
 {
     [Export]
-    string content = "Fast";
+    string content = "Goblin";
     [Export]
-    int contentAmount = 3;
+    int contentAmount = 5;
 
     // Called when the node enters the scene tree for the first time.
     

@@ -5,8 +5,7 @@ public class RangeVisualizer : Control
 {
     [Export]
     float circleVisualizerResolution = 0.1f;
-    float range = 0;
-    Vector2 pos;
+    Tower tower;
     // Declare member variables here. Examples:
     // private int a = 2;
     // private string b = "text";
@@ -14,13 +13,33 @@ public class RangeVisualizer : Control
     // Called when the node enters the scene tree for the first time.
     
     public override void _Draw() {
-        DrawEmptyCircle(pos, new Vector2(range, range), Color.ColorN("white"), circleVisualizerResolution);
+        if (tower != null) {
+            DrawEmptyCircle(tower.GetPosition() + new Vector2(12, 12), new Vector2(tower.GetRange(), tower.GetRange()), Color.ColorN("white"), circleVisualizerResolution);
+            if (tower is Shotgun) {
+                Shotgun shot = tower as Shotgun;
+                float spread = shot.GetSpreadDegrees();
+
+                Vector2 dir = Vector2.Right;
+
+                DrawLine(
+                        tower.GetPosition() + new Vector2(12, 12),
+                        tower.GetPosition() + new Vector2(12, 12) + tower.GetRange() * dir.Rotated(Mathf.Deg2Rad(-spread/2)),
+                        Color.ColorN("white")
+                    );
+                DrawLine(
+                        tower.GetPosition() + new Vector2(12, 12),
+                        tower.GetPosition() + new Vector2(12, 12) + tower.GetRange() * dir.Rotated(Mathf.Deg2Rad(spread/2)),
+                        Color.ColorN("white")
+                    );
+
+            }
+        }
     }
 
-    public void SetRange(Vector2 p, float r) {
+    public void SetTower(Tower t) {
         SetVisible(true);
-        pos = p;
-        range = r;
+
+        tower = t;
 
         Update();
     }

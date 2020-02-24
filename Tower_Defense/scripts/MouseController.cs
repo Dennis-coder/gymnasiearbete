@@ -42,6 +42,12 @@ public class MouseController : Node2D
         gridWorldPos = worldGrid.MapToWorld(gridPos);
 
         cellHighlight.SetPosition(gridWorldPos);
+
+        if (Input.IsKeyPressed(49)) {
+            curTower = "Shoot";
+        } else if (Input.IsKeyPressed(51)) {
+            curTower = "Shotgun";
+        }
     }
 
     public override void _UnhandledInput(InputEvent @event) {

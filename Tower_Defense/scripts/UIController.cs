@@ -31,11 +31,9 @@ public class UIController : Control
     public void SetTower(Tower t) {
         tower = t;
         timerVisualizer.SetTower(tower);
+        rangeVisualizer.SetTower(tower);
 
-        if (t != null) {
-            rangeVisualizer.SetRange(tower.GetPosition() + new Vector2(12,12), tower.GetRange());
-            
-        } else {
+        if (t == null) {
             rangeVisualizer.SetVisible(false);
             timerVisualizer.SetVisible(false);
         }

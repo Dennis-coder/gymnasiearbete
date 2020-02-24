@@ -69,6 +69,8 @@ public class GameController : Node2D
         towerCosts.Add("Tower", 40);
         towerScenes.Add("Shoot", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Shoot.tscn"));
         towerCosts.Add("Shoot", 40);
+        towerScenes.Add("Shotgun", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Shotgun.tscn"));
+        towerCosts.Add("Shotgun", 60);
 
         //LOAD ENEMY SCENE
         enemyScenes.Add("Enemy", (PackedScene)ResourceLoader.Load("res://Scenes/Enemies/Enemy.tscn"));
@@ -140,6 +142,7 @@ public class GameController : Node2D
         if (Input.IsActionJustPressed("ui_select")) {
             StartWave();
         }
+        
     }
 
     //-------------------------PRIVATE FUNCTIONS------------------------------------------------

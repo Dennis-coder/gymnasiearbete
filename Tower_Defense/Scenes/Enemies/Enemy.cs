@@ -13,6 +13,8 @@ public class Enemy : Node2D
     protected Vector2[] path = new Vector2[0];
     Vector2 startPos;
     protected int target = 1;
+
+    bool dead = false;
     
     AnimationPlayer anim;
 
@@ -104,8 +106,11 @@ public class Enemy : Node2D
     }
 
     public virtual void Die() {
-        gameController.EnemyKilled();
-        QueueFree();
+        if (!dead) {
+            dead = true;
+            gameController.EnemyKilled();
+            QueueFree();
+        }
     }
 
     private void UpdateAnimation() {
