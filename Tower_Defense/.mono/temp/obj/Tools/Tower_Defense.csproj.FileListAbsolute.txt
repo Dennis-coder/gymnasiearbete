@@ -14,11 +14,6 @@ C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.m
 C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csprojResolveAssemblyReference.cache
 C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.dll
 C:/Users/luc.sommerland/Documents/Godot projects/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.pdb
-D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.dll
-D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/bin/Tools/Tower_Defense.pdb
-D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.csprojResolveAssemblyReference.cache
-D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.dll
-D:/Godot Games/gymnasiearbete/Tower_Defense/.mono/temp/obj/Tools/Tower_Defense.pdb
 C:\Users\lukas.kuhlin\Documents\GitHub\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
 C:\Users\lukas.kuhlin\Documents\GitHub\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
 C:\Users\lukas.kuhlin\Documents\GitHub\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
@@ -29,3 +24,8 @@ D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mon
 D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb
 D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.dll
 D:\lukas\Documents\Godot\gymnasiearbete-master\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.pdb
+D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.dll
+D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\bin\Tools\Tower_Defense.pdb
+D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.csprojResolveAssemblyReference.cache
+D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.dll
+D:\Godot Games\gymnasiearbete\Tower_Defense\.mono\temp\obj\Tools\Tower_Defense.pdb

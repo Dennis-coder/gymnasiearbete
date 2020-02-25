@@ -12,6 +12,8 @@ public class Shotgun : Tower
     [Export]
     float FragmentAmounts;
 
+    AnimationPlayer anim;
+
     override public void _Ready() {
         base._Ready();
 
@@ -20,9 +22,13 @@ public class Shotgun : Tower
 
         GD.Print(Vector2.Right);
         GD.Print(Vector2.Right.Rotated(Mathf.Pi/2));
+
+        anim = FindNode("AnimationPlayer") as AnimationPlayer;
     }
 
     protected override void Shoot(Vector2 targetPos) {
+        anim.Play("Shoot");
+
         Random rand = new Random();
         for (int i = 0; i < FragmentAmounts; i++) {
             Projectile projectile = projectileType.Instance() as Projectile;
