@@ -69,6 +69,8 @@ public class GameController : Node2D
         towerCosts.Add("Tower", 40);
         towerScenes.Add("Shoot", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Shoot.tscn"));
         towerCosts.Add("Shoot", 40);
+        towerScenes.Add("Mortar", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Mortar.tscn"));
+        towerCosts.Add("Mortar", 50);
         towerScenes.Add("Shotgun", (PackedScene)ResourceLoader.Load("res://Scenes/Towers/Shotgun.tscn"));
         towerCosts.Add("Shotgun", 60);
 
@@ -104,7 +106,7 @@ public class GameController : Node2D
         health = GetTree().GetRoot().GetNode("World").FindNode("Health") as Label;
         GD.Print(health.GetName());
 
-        EarnMoney(100);
+        EarnMoney(500);
         UpdateHealth(1500);
 
         Tuple<Vector2, int> tuple = BackTrackPath(path, worldGrid.MapToWorld(new Vector2(8,6)), 24, 3);

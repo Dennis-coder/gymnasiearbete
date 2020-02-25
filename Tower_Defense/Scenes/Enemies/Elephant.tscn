@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Enemies/Enemy.cs" type="Script" id=1]
 [ext_resource path="res://Sprites/ElephantSpriteSheet.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "run_down"
 length = 1.2
 loop = true
@@ -61,7 +61,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 2, 3, 4, 5 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "run_right"
 length = 1.2
 loop = true
@@ -90,7 +90,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 resource_name = "run_up"
 length = 1.2
 loop = true
@@ -119,30 +119,30 @@ tracks/1/keys = {
 "values": [ 12, 13, 14, 15, 16, 17 ]
 }
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 13, 16 )
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource( 1 )
 speed = 20.0
-hp = 200.0
-value = 15.0
+hp = 400.0
+value = 17.0
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 12, 12 )
 texture = ExtResource( 2 )
 vframes = 3
 hframes = 6
-frame = 7
+frame = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/run_down = SubResource( 3 )
+anims/run_down = SubResource( 1 )
 anims/run_left = SubResource( 2 )
-anims/run_right = SubResource( 4 )
-anims/run_up = SubResource( 5 )
+anims/run_right = SubResource( 3 )
+anims/run_up = SubResource( 4 )
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
 position = Vector2( 12, 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
-shape = SubResource( 1 )
+shape = SubResource( 5 )

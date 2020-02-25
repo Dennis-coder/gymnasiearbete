@@ -45,6 +45,8 @@ public class MouseController : Node2D
 
         if (Input.IsKeyPressed(49)) {
             curTower = "Shoot";
+        } else if (Input.IsKeyPressed(50)) {
+            curTower = "Mortar";
         } else if (Input.IsKeyPressed(51)) {
             curTower = "Shotgun";
         }
@@ -58,11 +60,13 @@ public class MouseController : Node2D
                     gameController.PlaceTower(curTower, gridPos);
                 } else {
                     //SELECT TOWER
+                    uiController.SetTower(null);
                     gameController.SellTower(cellHighlight.GetCurTower());
                     
                 }
             }
     	}
+        
         InputEventMouseMotion eM = @event as InputEventMouseMotion;
 
         if (eM != null) {

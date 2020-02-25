@@ -29,7 +29,7 @@ public class Tower : Node2D
 
     public override void _Ready()
     {
-        towerRange = (FindNode("Range") as CollisionShape2D).GetShape() as CircleShape2D;
+        towerRange = GetNode("Detection Enemy").GetNode<CollisionShape2D>("Range").GetShape() as CircleShape2D;
         towerRange.Radius = range;
 
         GD.Print(towerRange.GetRadius(), " vs ", range);

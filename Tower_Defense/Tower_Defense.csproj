@@ -51,9 +51,12 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\Enemies\Enemy.cs" />
+    <Compile Include="scripts\Bomb.cs" />
     <Compile Include="scripts\Carriage.cs" />
     <Compile Include="scripts\CellHighlight.cs" />
+    <Compile Include="scripts\Explosion.cs" />
     <Compile Include="scripts\GameController.cs" />
+    <Compile Include="scripts\Mortar.cs" />
     <Compile Include="scripts\MouseController.cs" />
     <Compile Include="scripts\Projectile.cs" />
     <Compile Include="scripts\RangeVisualizer.cs" />

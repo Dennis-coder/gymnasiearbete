@@ -9,6 +9,7 @@ public class TimerVisualizer : Control
     float prevTimerVal;
 
     Tower tower;
+    NodePath towerPath;
 
 
     public override void _Process(float delta)
@@ -21,14 +22,21 @@ public class TimerVisualizer : Control
     }
 
     public override void _Draw() {
-        if (tower != null) {
-            DrawRect(new Rect2(tower.GetPosition() + new Vector2(0, 24), tower.GetShootTimer()*24, TimerVisualizerHeight), Color.ColorN("white"));
+        if (GetTree().GetRoot().GetNode("World").HasNode(towerPath)) {
+            if (tower != null) {
+                DrawRect(new Rect2(tower.GetPosition() + new Vector2(0, 24), tower.GetShootTimer()*24, TimerVisualizerHeight), Color.ColorN("white"));
+            }
         }
     }
 
     public void SetTower(Tower t) {
         SetVisible(true);
         tower = t;
+
+        if (tower != null) {
+            towerPath = tower.GetPath();
+
+        }
 
     }
 }

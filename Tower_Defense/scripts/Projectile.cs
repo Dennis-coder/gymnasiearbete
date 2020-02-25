@@ -4,7 +4,7 @@ using System;
 public class Projectile : Sprite
 {
     [Export]
-    float speed = 1;
+    protected float speed = 1;
     [Export]
     float lifetime = 2;
     RayCast2D ray;
@@ -33,14 +33,16 @@ public class Projectile : Sprite
         }
     }
 
-    void Hit(object obj) {
+    protected virtual void Hit(object obj = null) {
         Area2D area = obj as Area2D;
+        if (area == null)
+            return;
         Enemy enemy = area.GetParent() as Enemy;
         if (enemy == null)
             return;
         
         
-        enemy.RegisterHit(20);
+        enemy.RegisterHit(damage);
 
         QueueFree();
     }
