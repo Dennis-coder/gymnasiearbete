@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/Towers/Tower.tscn" type="PackedScene" id=1]
-[ext_resource path="res://scripts/Mortar.cs" type="Script" id=2]
-[ext_resource path="res://Scenes/Projectiles/Bomb.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites/Mortar.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Mortar.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Projectiles/Bomb.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Mortar.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "shoot"
@@ -21,16 +20,39 @@ tracks/0/keys = {
 "values": [ 1, 0, 1, 2, 3 ]
 }
 
-[node name="Tower" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 12, 12 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 128.0
+
+[node name="Tower" type="Node2D"]
+script = ExtResource( 1 )
 damage = 100.0
 rateOfFire = 10.0
-projectileType = ExtResource( 3 )
+projectileType = ExtResource( 2 )
 
-[node name="Sprite" parent="." index="0"]
-texture = ExtResource( 4 )
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 12, 12 )
+texture = ExtResource( 3 )
 hframes = 4
 frame = 3
 
-[node name="AnimationPlayer" parent="Sprite" index="0"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/shoot = SubResource( 1 )
+
+[node name="Detection Mouse" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Mouse"]
+position = Vector2( 12, 12 )
+shape = SubResource( 2 )
+
+[node name="Detection Enemy" type="Area2D" parent="."]
+
+[node name="Range" type="CollisionShape2D" parent="Detection Enemy"]
+position = Vector2( 12, 12 )
+shape = SubResource( 3 )
+[connection signal="area_entered" from="Detection Enemy" to="." method="_on_Detection_Enemy_area_entered"]
+[connection signal="area_exited" from="Detection Enemy" to="." method="_on_Detection_Enemy_area_exited"]

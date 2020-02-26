@@ -53,8 +53,8 @@ public class GameController : Node2D
     public Label money;
     public Label health;
 
-    public override void _Ready()
-    {
+    public override void _Ready() {
+        //Viewport.
         
         wavePauseTimer = GetNode<Timer>("WavePauseTimer");
 
@@ -106,8 +106,8 @@ public class GameController : Node2D
         health = GetTree().GetRoot().GetNode("World").FindNode("Health") as Label;
         GD.Print(health.GetName());
 
-        EarnMoney(500);
-        UpdateHealth(1500);
+        EarnMoney(100);
+        UpdateHealth(1000);
 
         Tuple<Vector2, int> tuple = BackTrackPath(path, worldGrid.MapToWorld(new Vector2(8,6)), 24, 3);
         GD.Print("btpi: ", tuple.Item2);
