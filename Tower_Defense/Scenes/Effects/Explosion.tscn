@@ -1,13 +1,43 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Explosion.cs" type="Script" id=1]
+[ext_resource path="res://Sprites/Explosion.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
+[sub_resource type="Animation" id=2]
+resource_name = "explode"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 5, 6, 7, 8 ]
+}
+
 [node name="Explosion" type="Node2D"]
 script = ExtResource( 1 )
+range = 32.0
 
-[node name="ExplosionArea" type="Area2D" parent="."]
+[node name="Explosion Area" type="Area2D" parent="."]
 
-[node name="Range" type="CollisionShape2D" parent="ExplosionArea"]
+[node name="Range" type="CollisionShape2D" parent="Explosion Area"]
 shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 9
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+playback_speed = 2.0
+anims/explode = SubResource( 2 )
+[connection signal="area_entered" from="Explosion Area" to="." method="_on_Explosion_Area_area_entered"]
+[connection signal="animation_finished" from="Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

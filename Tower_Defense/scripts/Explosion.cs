@@ -1,51 +1,47 @@
 using Godot;
 using System;
 
-public class Explosion : Node2D
-{
+public class Explosion : Node2D {
     public float damageFalloff;
     public float damage;
+    [Export]
     float range = 48;
-    Area2D explosionArea;
     CircleShape2D radius;
+    Area2D explosionArea;
+    Sprite sprite;
 
-    bool wait = true;
+    AnimationPlayer anim;
 
-    public override void _Ready()
-    {
+    public override void _Ready() {
         radius = (FindNode("Range") as CollisionShape2D).GetShape() as CircleShape2D;
         radius.Radius = range;
 
-        explosionArea = GetNode<Area2D>("ExplosionArea");
+        anim = FindNode("AnimationPlayer") as AnimationPlayer;
 
-        
+        sprite = FindNode("Sprite") as Sprite;
+
+        explosionArea = FindNode("Explosion Area") as Area2D;
+
+        Random rand = new Random();
+        sprite.Rotation =  Mathf.Deg2Rad((float) (rand.Next(0, 359)));
+        sprite.Scale = new Vector2(range / 24, range / 24);
     }
 
-    public override void _PhysicsProcess(float delta) {
-        if (wait) {
-            wait = false;
-            return;
-        }
+    public override void _Process(float delta) {
+        anim.Play("explode");
+    }
 
-        Godot.Collections.Array areas = explosionArea.GetOverlappingAreas();
-        GD.Print(areas.Count);
-        foreach (Area2D area in areas) {
-            Enemy enemy = area.GetParent() as Enemy;
-
-            if (enemy != null) {
-                enemy.RegisterHit(damage);
-            }
-        }
-
-        GD.Print("Kabom");
+    private void _on_AnimationPlayer_animation_finished(AnimationPlayer animation) {
         QueueFree();
     }
 
-    
+    public void _on_Explosion_Area_area_entered(Area2D area) {
+        Enemy enemy = area.GetParent() as Enemy;
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+        if (enemy != null) {
+            enemy.RegisterHit(damage);
+        }
+
+        explosionArea.QueueFree();
+    }
 }
