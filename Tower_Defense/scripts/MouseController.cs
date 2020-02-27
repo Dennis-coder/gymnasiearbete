@@ -15,7 +15,11 @@ public class MouseController : Node2D
     public TileMap worldGrid;
     
     
-    string curTower = "Shoot";
+    string curTower = "";
+
+    Node2D shootHighlight;
+    Node2D mortarHighlight;
+    Node2D shotgunHighlight;
 
     Vector2 gridPos;
     Vector2 gridWorldPos;
@@ -31,6 +35,15 @@ public class MouseController : Node2D
         // get_tree().get_root().get_node("myRootNode").find_node("desiredNode")
         worldGrid = GetTree().GetRoot().GetNode("World").FindNode("WorldGrid") as TileMap;
         uiController = GetTree().GetRoot().GetNode("World").FindNode("UIController") as UIController;
+
+        shootHighlight = FindNode("ShootHighlight") as Node2D;
+        mortarHighlight = FindNode("MortarHighlight") as Node2D;
+        shotgunHighlight = FindNode("ShotgunHighlight") as Node2D;
+
+        shootHighlight.SetModulate(new Color(1,1,1,.5f));
+        mortarHighlight.SetModulate(new Color(1,1,1,.5f));
+        shotgunHighlight.SetModulate(new Color(1,1,1,.5f));
+        
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,11 +57,13 @@ public class MouseController : Node2D
         cellHighlight.SetPosition(gridWorldPos);
 
         if (Input.IsKeyPressed(49)) {
-            curTower = "Shoot";
+            ChangeSelectedTower("Shoot");
         } else if (Input.IsKeyPressed(50)) {
-            curTower = "Mortar";
+            ChangeSelectedTower("Mortar");
         } else if (Input.IsKeyPressed(51)) {
-            curTower = "Shotgun";
+            ChangeSelectedTower("Shotgun");
+        } else if (Input.IsKeyPressed(16777217)) {
+            ChangeSelectedTower("");
         }
     }
 
@@ -58,9 +73,10 @@ public class MouseController : Node2D
             if (e.IsActionPressed("mouse_left")) {
                 if (cellHighlight.IsCellVacant()) {
                     gameController.PlaceTower(curTower, gridPos);
+                    ChangeSelectedTower("");
                 } else {
                     //SELECT TOWER
-                    uiController.SetTower(null);
+                    // uiController.SetTower(null);
                     gameController.SellTower(cellHighlight.GetCurTower());
                     
                 }
@@ -82,6 +98,42 @@ public class MouseController : Node2D
 
             mousePos = eM.GlobalPosition - new Vector2(camera2D.GetOffset().x, 0);
         }
+
+    }
+
+    public void ChangeSelectedTower(string towerType) {
+        switch (towerType) {
+            case "Shoot":
+                curTower = "Shoot";
+                shootHighlight.SetVisible(true);
+                mortarHighlight.SetVisible(false);
+                shotgunHighlight.SetVisible(false);
+            break;
+            case "Mortar":
+                curTower = "Mortar";
+                
+                shootHighlight.SetVisible(false);
+                mortarHighlight.SetVisible(true);
+                shotgunHighlight.SetVisible(false);
+
+            break;
+            case "Shotgun":
+                curTower = "Shotgun";
+                
+                shootHighlight.SetVisible(false);
+                mortarHighlight.SetVisible(false);
+                shotgunHighlight.SetVisible(true);
+            break;
+            default:
+                curTower = "";
+
+                
+                shootHighlight.SetVisible(false);
+                mortarHighlight.SetVisible(false);
+                shotgunHighlight.SetVisible(false);
+            break;
+        }
+
 
     }
 
