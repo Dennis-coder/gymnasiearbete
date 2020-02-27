@@ -22,11 +22,12 @@ public class TimerVisualizer : Control
     }
 
     public override void _Draw() {
+        if (towerPath != null) {
         if (GetTree().GetRoot().GetNode("World").HasNode(towerPath)) {
             if (tower != null) {
                 DrawRect(new Rect2(tower.GetPosition() + new Vector2(0, 24), tower.GetShootTimer()*24, TimerVisualizerHeight), Color.ColorN("white"));
             }
-        }
+        }}
     }
 
     public void SetTower(Tower t) {
