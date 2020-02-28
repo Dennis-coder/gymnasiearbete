@@ -20,7 +20,7 @@ public class CellHighlight : Sprite
     }
 
     public void _on_DetectionArea_area_exited(Area2D area) {
-        curTower = ((curTower = area.GetParent() as Tower) == curTower) ? null : curTower;
+        curTower = (area.GetParent() != null && area.GetParent().GetName() == curTower.GetName()) ? null : curTower;
     }
 
 
