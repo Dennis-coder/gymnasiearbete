@@ -8,14 +8,12 @@ public class Bomb : Projectile
 
     PackedScene explosionScene;
     Sprite pellet;
-    float yDir;
+    
 
     public override void _Ready() {
         base._Ready();
 
         pellet = GetNode<Sprite>("Pellet");
-
-        yDir = (dir.x < 0) ? 1 : -1;
 
         explosionScene = (PackedScene)ResourceLoader.Load("res://Scenes/Effects/Explosion.tscn");
     }
@@ -28,7 +26,7 @@ public class Bomb : Projectile
         
         float progress = origin.DistanceTo(GetPosition())/origin.DistanceTo(targetPos);
 
-        pellet.SetPosition(QuadraticBezier(new Vector2(0, 0), new Vector2(0, 50 * yDir), new Vector2(0, 0), progress));
+        pellet.SetPosition(QuadraticBezier(new Vector2(0, 0), new Vector2(50 * -dir.y, 50 * -dir.x), new Vector2(0, 0), progress));
         pellet.SetScale(QuadraticBezier(new Vector2(1, 1), new Vector2(1.5f, 1.5f), new Vector2(1, 1), progress));
 
 
