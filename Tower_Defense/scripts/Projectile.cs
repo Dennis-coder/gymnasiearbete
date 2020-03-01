@@ -9,6 +9,7 @@ public class Projectile : Sprite
     float lifetime = 2;
     RayCast2D ray;
 
+    Timer t;
 
     public Vector2 dir = new Vector2(0.5f,0.5f);  
     public float damage;
@@ -16,7 +17,9 @@ public class Projectile : Sprite
     public override void _Ready() {
         SetRotation(GetAngleTo(GetPosition() + dir));
 
-        GetNode<Timer>("Timer").WaitTime = lifetime;
+        t = GetNode<Timer>("Timer");
+        t.WaitTime = lifetime;
+        t.Start();
         ray = GetNode<RayCast2D>("Ray");
 
     }

@@ -131,6 +131,7 @@ value = 17.0
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 12, 12 )
 texture = ExtResource( 2 )
+offset = Vector2( 0, -6 )
 vframes = 3
 hframes = 6
 frame = 15
