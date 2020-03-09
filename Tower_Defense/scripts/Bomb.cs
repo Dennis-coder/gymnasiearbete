@@ -7,9 +7,13 @@ public class Bomb : Projectile
     public Vector2 targetPos;
 
     PackedScene explosionScene;
+    Sprite pellet;
+    
 
     public override void _Ready() {
         base._Ready();
+
+        pellet = GetNode<Sprite>("Pellet");
 
         explosionScene = (PackedScene)ResourceLoader.Load("res://Scenes/Effects/Explosion.tscn");
     }
@@ -18,6 +22,13 @@ public class Bomb : Projectile
         Vector2 newPos = (GetPosition() + dir * speed * delta);
         float dist = GetPosition().DistanceTo(newPos);
         SetPosition(newPos);
+
+        
+        float progress = origin.DistanceTo(GetPosition())/origin.DistanceTo(targetPos);
+
+        pellet.SetPosition(QuadraticBezier(new Vector2(0, 0), new Vector2(50 * -dir.y, 50 * -dir.x), new Vector2(0, 0), progress));
+        pellet.SetScale(QuadraticBezier(new Vector2(1, 1), new Vector2(1.5f, 1.5f), new Vector2(1, 1), progress));
+
 
         if (origin.DistanceTo(targetPos) <= origin.DistanceTo(GetPosition())) {
             Hit();
@@ -37,4 +48,14 @@ public class Bomb : Projectile
 
         QueueFree();
     }
+
+    private Vector2 QuadraticBezier(Vector2 p0, Vector2 p1, Vector2 p2, float t) {
+        Vector2 q0 = p0.LinearInterpolate(p1, t);
+        Vector2 q1 = p1.LinearInterpolate(p2, t);
+
+        Vector2 r = q0.LinearInterpolate(q1, t);
+
+        return r;
+    }
+
 }

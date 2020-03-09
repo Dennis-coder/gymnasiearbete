@@ -29,10 +29,10 @@ radius = 128.0
 
 [node name="Shotgun" type="Node2D"]
 script = ExtResource( 1 )
-rateOfFire = 4.0
+rateOfFire = 2.0
 projectileType = ExtResource( 2 )
-range = 60.0
-spreadDegrees = 90.0
+range = 40.0
+spreadDegrees = 60.0
 FragmentAmounts = 10.0
 
 [node name="Sprite" type="Sprite" parent="."]
