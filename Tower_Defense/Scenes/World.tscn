@@ -1,14 +1,17 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scripts/GameController.cs" type="Script" id=1]
 [ext_resource path="res://tiles/Grasslands.tres" type="TileSet" id=2]
 [ext_resource path="res://scripts/MouseController.cs" type="Script" id=3]
 [ext_resource path="res://Sprites/CrossHair.png" type="Texture" id=4]
 [ext_resource path="res://scripts/CellHighlight.cs" type="Script" id=5]
-[ext_resource path="res://Sprites/Tower.png" type="Texture" id=6]
-[ext_resource path="res://scripts/UIController.cs" type="Script" id=7]
-[ext_resource path="res://scripts/RangeVisualizer.cs" type="Script" id=8]
-[ext_resource path="res://scripts/TimerVisualizer.cs" type="Script" id=9]
+[ext_resource path="res://Sprites/ShootTower.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Shotgun.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Mortar.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Tower.png" type="Texture" id=9]
+[ext_resource path="res://scripts/UIController.cs" type="Script" id=10]
+[ext_resource path="res://scripts/RangeVisualizer.cs" type="Script" id=11]
+[ext_resource path="res://scripts/TimerVisualizer.cs" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11, 11 )
@@ -44,12 +47,31 @@ offset = Vector2( 12, 12 )
 script = ExtResource( 5 )
 
 [node name="DetectionArea" type="Area2D" parent="MouseController/Cell Highlight"]
+editor/display_folded = true
 position = Vector2( 12, 12 )
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseController/Cell Highlight/DetectionArea"]
 shape = SubResource( 1 )
+
+[node name="ShootHighlight" type="Sprite" parent="MouseController/Cell Highlight"]
+visible = false
+position = Vector2( 12, 12 )
+texture = ExtResource( 6 )
+hframes = 8
+
+[node name="ShotgunHighlight" type="Sprite" parent="MouseController/Cell Highlight"]
+visible = false
+position = Vector2( 12, 12 )
+texture = ExtResource( 7 )
+hframes = 5
+
+[node name="MortarHighlight" type="Sprite" parent="MouseController/Cell Highlight"]
+visible = false
+position = Vector2( 12, 12 )
+texture = ExtResource( 8 )
+hframes = 4
 
 [node name="Range" type="Polygon2D" parent="MouseController"]
 
@@ -109,25 +131,25 @@ columns = 4
 margin_right = 24.0
 margin_bottom = 24.0
 toggle_mode = true
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 9 )
 stretch_mode = 4
 
 [node name="UIController" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 7 )
+script = ExtResource( 10 )
 
 [node name="TowerStatVisualizer" type="CanvasLayer" parent="UIController"]
 
 [node name="RangeVisualizer" type="Control" parent="UIController/TowerStatVisualizer"]
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 8 )
+script = ExtResource( 11 )
 
 [node name="TimerVisualizer" type="Control" parent="UIController/TowerStatVisualizer"]
 margin_right = 40.0
 margin_bottom = 40.0
-script = ExtResource( 9 )
+script = ExtResource( 12 )
 [connection signal="area_entered" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_entered"]
 [connection signal="area_exited" from="MouseController/Cell Highlight/DetectionArea" to="MouseController/Cell Highlight" method="_on_DetectionArea_area_exited"]
 [connection signal="timeout" from="WavePauseTimer" to="." method="_on_WavePauseTimer_timeout"]

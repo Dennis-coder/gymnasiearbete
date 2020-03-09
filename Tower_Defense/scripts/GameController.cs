@@ -370,6 +370,11 @@ public class GameController : Node2D
 
     //TOWER------------------------------------------------------------
     public void PlaceTower(string towerType, Vector2 gridPos) {
+        if (!towerCosts.ContainsKey(towerType) && !towerScenes.ContainsKey(towerType)) {
+            GD.Print("Error tower does not exist");
+            return;
+        }
+
         PackedScene scene = towerScenes[towerType];
         float cost = towerCosts[towerType];
         //checka marktyp
@@ -393,6 +398,7 @@ public class GameController : Node2D
     }
 
     public void SellTower(Tower tower) {
+
         float value = towerCosts[tower.type] * resellFactor;
         EarnMoney(value);
 
